@@ -1,0 +1,96 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <title>Login Page</title>
+
+    <style>
+
+
+
+
+.signinheader{
+    background-color: rgb(64, 83, 133);
+    height: 6vh;
+    text-align: center;
+    color: white;
+}
+
+.container1{
+    height: 58vh;
+    
+    text-align: center;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    padding-top: 10vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    width: 50vw;
+    margin-left: 50vh;
+    background-color: rgb(64, 83, 133);
+    border-radius: 2vh;
+    
+    
+}
+.email{
+    width: 25vw;
+    height: 5vh;
+    margin-bottom: 2vh;
+    border-radius: 1vh;
+    text-align: center;
+}
+.login{
+    width: 25vw;
+    height: 5vh;
+    text-align: center;
+    margin-bottom: 2vh;
+    border-radius: 1vh;
+    
+}
+
+    </style>
+</head>
+<body>
+    <div class="signinheader">
+        <h2> Blue Collar. </h2>
+    </div>
+    <div id="logreg-forms" class="container1">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> </h1>
+            
+            
+            <input type="email" id="username" name="username" class="email" placeholder="&#xF32F; someone@someone.com" required="" autofocus=""><br>
+            <input type="password" id="password" name="password" class="email" placeholder="&#xF47B; **********" required=""><br>
+
+            {% for message in messages %}
+            <p id="messages">{{message}}</p>
+            {% endfor %}
+            
+            <input type="submit" value="login" class="login"><br>
+            <a href="#" id="forgot_pswd" class="login" >Forgot password?</a>
+            <hr>
+            
+            <a href="{% url 'signup' %}"> <button class="login" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> New User? <u>Register Here</u></button> </a>
+            </form>
+
+            
+    </div>
+    <div class="signinheader">
+        
+    </div>
+    
+    
+</body>
+
+</html>

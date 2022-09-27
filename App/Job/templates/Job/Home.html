@@ -1,0 +1,98 @@
+{% extends 'Job/base.html' %}{% load static %}
+
+{% block content %}
+    <style>
+
+        .container{
+            
+            margin-top: 2vh;
+            
+        }
+
+        .post_input{
+            height: 30vh;
+            padding-top: 2vh;
+            padding-left: 1vw;
+            border-style: inset;
+            border-color: rgb(223, 250, 250);  
+            border-width: 1vh;
+        }
+        .posts{
+            margin-top: 2vh;
+            
+            padding-top: 5vh;
+            border-style: inset;
+            border-color: rgb(223, 250, 250);  
+            border-width: 1vh;
+        }
+
+        .post_top{
+            
+            width: 30vw;
+            margin-left: 0vw;
+        }
+
+        .post_pic{
+            border-style: double;
+            height: 10vh;
+            margin-left: 5vh;
+            border-radius: 50%;
+            padding-top: 2vh;
+            padding-left: 2vw;
+        }
+
+        .post_name{
+            margin-top: 2vh;
+            width: 30vw;
+            
+        }
+
+        .mainSub{
+            text-align: justify;
+            
+            padding-left: 3vw;
+            padding-right: 3vw;
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+        }
+
+        
+       
+    </style>
+
+    
+    
+    <div class=" container">
+        <div class="row post_input">
+            Post Something Here!!     
+        </div>
+        <div></div>
+        <div class="row posts">
+            <div class="row post_top">
+                <div class="col-2 post_pic">
+                    <img src="" alt="apple" class="profile">
+                </div>
+                <div class="col-8 post_name">
+                    <h4> Nirajan Sangraula </h4> 
+                    09/27/2022
+                </div>
+            </div>
+            <div class="row mainSub">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make 
+                a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
+                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </div>
+            <div clas="row">
+
+            </div>
+             
+            
+        </div>
+    </div>
+    {% endblock %}
+    
+
+
+
