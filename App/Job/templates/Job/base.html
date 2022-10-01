@@ -23,7 +23,7 @@
         
 
         .top{
-            background-color: rgb(152, 194, 194);
+            background-color: rgb(4, 91, 98);
             height: 6vh;
             text-align: center;
             color: rgb(255, 255, 255);   
@@ -38,7 +38,12 @@
         }
 
         .navs{
-            color: rgb(65, 63, 63);
+            color: whitesmoke;
+            padding-top: 1vh;
+        }
+
+        .navs:hover{
+            color: rgb(121, 119, 26);
         }
 
         .name{
@@ -72,13 +77,13 @@
         
         <div class="row cont top">
             <div class="col-3 navs">
-                <a href="{% url 'home' %}" class="navs">&#xF425;</a>
+                <a href="{% url 'home' %}" class="navs"><span class="glyphicon glyphicon-home"></span></a>
             </div>
             <div class="col-3 navs">
                 <a href="{% url 'profile' %}" class="navs"><span class="glyphicon glyphicon-user"></span></a>
             </div>   
             <div class="col-3 navs">
-                <a href="{% url 'jobs' %}" class="navs">Jobs</a>
+                <a href="{% url 'jobs' %}" class="navs"><span class="glyphicon glyphicon-briefcase"></span></a>
             </div>
             <div class="col-3 navs">
                 <a href="" class="navs">+ Add Job</a>

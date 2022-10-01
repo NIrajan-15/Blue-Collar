@@ -20,6 +20,11 @@ class CreateuserForm(UserCreationForm):
             user.save()
         return user
 
+class UserProfileForm(forms.ModelForm):
+    class meta:
+        model = models.UserProfile
+        fields = '__all__'
+
 class JobTypeForm(forms.Form):
 
     job_choices = [('part-time','part-time'),('full-time','full-time'),('contract','contract')]
