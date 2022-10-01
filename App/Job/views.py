@@ -65,4 +65,30 @@ def jobs(request):
 
 @login_required(login_url='login')
 def profile(request):
-    return render(request, 'Job/profile.html')
+
+    profile = UserProfile.objects.get(user=request.user)
+    
+    context = {
+        'profile' : profile
+    }
+
+    return render(request, 'Job/profile.html', context)
+
+@login_required(login_url='login')
+def update_profile(request,pid):
+
+    profile = UserProfile.objects.get(id=pid)
+
+    profileForm = UserProfileForm(instance=profile)
+    if request.method == "POST":
+        profileForm = UserProfileForm(request.POST,instance=profile)
+
+        if profileForm.is_valid():
+            profileForm.save()
+
+    context={
+        'profileForm' : profileForm,
+        'pid' : pid,
+    }
+
+    return render(request, 'Job/update_profile.html', 'context')

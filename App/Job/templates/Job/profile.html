@@ -1,8 +1,119 @@
 {% extends 'Job/base.html' %}{% load static %}
 
 {% block content %}
-<div class="main-container">
-    Profile
+
+<style>
+    .container{
+        margin-top: 2vh;
+    }
+    
+
+    .first{
+        height: 30vh;
+        padding-top: 5vh;
+        padding-left: 1vw;
+        box-shadow: 5px 5px 0px  rgb(21, 70, 67);
+        background-color: rgb(114, 114, 114);
+        color: white;
+    }
+
+    .profilepic{
+        height: 20vh;
+        text-align: center;
+        border-style: ridge;
+        height: 20vh;
+        margin-left: 5vw;
+        border-radius: 60%;
+        padding-top: 3vh;  
+    }
+
+    img{
+        height: 8vh;
+        width: 5vw;
+        border-style: dashed;
+    }
+
+    .namesec{
+        font-size: 4vh;
+        padding-top: 8vh;
+    }
+    
+    .contactsec{
+        height: 20vh;
+        padding-top: 4vh;
+        padding-left: 1vw;
+        box-shadow: 5px 5px 0px  rgb(4, 91, 98);
+        background-color: rgb(114, 114, 114);
+        color: white;
+        margin-top: 2vh;
+        font-size: 3vh;
+    }
+
+    .expheader{
+        height: 10vh;
+        padding-left: 1vw;
+        box-shadow: 5px 5px 0px  rgb(4, 91, 98);
+        background-color: rgb(114, 114, 114);
+        color: white;
+        margin-top: 2vh;
+        text-align: center;
+        font-size: 4vh;
+        padding-top:2vh;
+    }
+
+    .expsec{
+        height: 30vh;
+        padding-top: 2vh;
+        padding-left: 1vw;
+        box-shadow: 5px 5px 0px  rgb(4, 91, 98);
+        background-color: rgb(114, 114, 114);
+        color: white;
+        margin-bottom: 3vh;
+    }
+
+    .emailsec{
+        text-align: right;
+        height: 5vh;
+        margin-bottom: 2vh;;
+    }
+    .phoneSec{
+        height: 5vh;
+    }
+    
+</style>
+
+
+<div class=" container">
+    <div class="row first">
+        <div class="col-2 profilepic">
+            <img src="" alt="profile pic">
+        </div>
+        <div class="col-4 namesec">
+            Nirajan Sangraula
+        </div>
+    </div>
+    <div class="row contactsec">
+        {{profile.user.email}}<br><br>
+        3186803536
+    </div>
+    <div class="row expheader">
+         Experience
+    </div>
+    
+    <div class="row expsec">
+        
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+
+        
+    </div>
     
 </div>
 {% endblock %}
