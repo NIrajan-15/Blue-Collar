@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.deletion import CASCADE
 from datetime import datetime
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     first_name = models.CharField(max_length=20)
@@ -23,11 +25,17 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     description = models.CharField(max_length =100)
-
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     def __str__(self):
         return self.job_title
 
+class Post(models.Model):
+    description = models.CharField(max_length=500)
+    created_at = models.DateField(default=datetime.now())
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.description
 
 class Job(models.Model):
 
@@ -49,3 +57,8 @@ class Job(models.Model):
 
 
 
+
+@receiver(post_save, sender=User)
+def create_userprofile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)

@@ -1,7 +1,10 @@
+from dataclasses import field
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from . import models
+from .models import *
+from django.forms import ModelForm
 from django import forms
 
 
@@ -20,10 +23,23 @@ class CreateuserForm(UserCreationForm):
             user.save()
         return user
 
-class UserProfileForm(forms.ModelForm):
-    class meta:
-        model = models.UserProfile
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
         fields = '__all__'
+        exclude = ['user']
+
+class ExperienceForm(ModelForm):
+    class Meta:
+        model = Experience
+        fields = '__all__'
+        exclude = ['user_profile']
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = '__all__'
+        exclude = ['user_profile']
 
 class JobTypeForm(forms.Form):
 

@@ -3,26 +3,47 @@
 {% block content %}
     <style>
 
-        .container{
-            
+        body{
+            background: #f3f3f3;
+        }
+
+        .main_container{
             margin-top: 2vh;
+            width: 60vw;
+            margin-left: 20vw;
+            margin-right: 20vw;
+            
+            
             
         }
 
-        .post_input{
-            height: 30vh;
+        .post_input,.post_box{
+            
             padding-top: 2vh;
             padding-left: 1vw;
             border-style: inset;
-            border-color: rgb(223, 250, 250);  
+            border-color: rgb(4, 91, 98);  
             border-width: 1vh;
+            margin-bottom: 2vh;
+            background-color: antiquewhite;
+            border-radius: 2vh;
         }
+
+        .post_input{
+            height: 40vh;
+        }
+        .post_box{
+            height: 30vh;
+            padding-left: 10vw;
+            padding-top: 4vh;
+        }
+
         .posts{
             margin-top: 2vh;
             
             padding-top: 5vh;
-            border-style: inset;
-            border-color: rgb(223, 250, 250);  
+            border-style: outset;
+            border-color: rgb(4, 91, 98);  
             border-width: 1vh;
         }
 
@@ -49,11 +70,42 @@
 
         .mainSub{
             text-align: justify;
-            
             padding-left: 3vw;
             padding-right: 3vw;
             margin-top: 5vh;
-            margin-bottom: 5vh;
+            
+        }
+
+        .reaction{
+            padding-left: 16vw;
+            padding-bottom: 3vh;
+            
+        }
+        .like{
+            font-size: 3vh;
+        }
+        .like:hover{
+            color:rgb(4, 91, 98);
+        }
+        .comment{
+            width: 30vw;
+            height: 4vh;
+            margin-left: 1vw;
+            text-align: center;
+            border-radius: 1vh;
+        }
+
+        .experience{
+            width: 40vw;
+            height: 15vh;
+            border-radius: 1vh;
+            text-align: center;
+        }
+
+        .postsubmit{
+            width: 10vw;
+            margin-left: 15vw;
+            margin-top: 1vh;
         }
 
         
@@ -62,12 +114,21 @@
 
     
     
-    <div class=" container">
-        <div class="row post_input">
-            Post Something Here!!     
+    <div class="main_container">
+        <div class="col post_box">
+            <form method="POST" class="form">
+                {% csrf_token %}
+            <div class="row">
+                <input type="text" class="experience" placeholder="Share Your Experience.." name="description" id="description">
+            </div>
+            <div class="row">
+                <input type="submit" value="Share" class="btn btn-primary btn-lg postsubmit">
+            </div> 
+            </form>    
         </div>
+        
         <div></div>
-        <div class="row posts">
+        <div class="col post_input">
             <div class="row post_top">
                 <div class="col-2 post_pic">
                     <img src="" alt="apple" class="profile">
@@ -77,15 +138,20 @@
                     09/27/2022
                 </div>
             </div>
-            <div class="row mainSub">
+            <div class="mainSub">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
                 standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make 
                 a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
                 remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
                 Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
             </div>
-            <div clas="row">
-
+            <div class="row reaction">
+                
+                <a href-"#"><span class="glyphicon glyphicon-thumbs-up like" ></span></a>
+                
+                <div class="col-8 comment">
+                    <input type="text" placeholder="comment.." class="comment">
+                </div>
             </div>
              
             

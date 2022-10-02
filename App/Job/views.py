@@ -16,11 +16,11 @@ def Signup(request):
 
         form = CreateuserForm(request.POST)
         if  form.is_valid():
-            
             form.save()
             return redirect('login')
+   
     form = CreateuserForm()
-
+    
     context = {
         'form' : form
     
@@ -55,7 +55,12 @@ def user_logout(request):
 
 @login_required(login_url='login')
 def home(request):
-    
+    if request.method == "POST":
+        print("HI")
+        profile = UserProfile.objects.get(user=request.user)
+        desc = request.POST['description']
+        post = Post.objects.create(user_profile=profile, description=desc)
+        post.save()
     return render(request, 'Job/Home.html')
 
 @login_required(login_url='login')
@@ -65,9 +70,11 @@ def jobs(request):
 
 @login_required(login_url='login')
 def profile(request):
-
-    profile = UserProfile.objects.get(user=request.user)
-    
+    print(request.user)
+    if (UserProfile.objects.get(user=request.user) is not None):
+        profile = UserProfile.objects.get(user=request.user)
+    else:
+        profile = None
     context = {
         'profile' : profile
     }
@@ -75,20 +82,23 @@ def profile(request):
     return render(request, 'Job/profile.html', context)
 
 @login_required(login_url='login')
-def update_profile(request,pid):
+def update_profile(request, pid):
 
     profile = UserProfile.objects.get(id=pid)
-
-    profileForm = UserProfileForm(instance=profile)
+    
+    profileForm = UserProfileForm(request.POST, instance=profile)
+    
     if request.method == "POST":
         profileForm = UserProfileForm(request.POST,instance=profile)
 
         if profileForm.is_valid():
             profileForm.save()
-
+    else:
+        profileForm=UserProfileForm(instance=profile)
     context={
         'profileForm' : profileForm,
-        'pid' : pid,
+        
     }
 
-    return render(request, 'Job/update_profile.html', 'context')
+    return render(request, 'Job/update_profile.html', context)
+

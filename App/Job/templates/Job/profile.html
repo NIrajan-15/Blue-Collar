@@ -11,9 +11,8 @@
     .first{
         height: 30vh;
         padding-top: 5vh;
-        padding-left: 1vw;
         box-shadow: 5px 5px 0px  rgb(21, 70, 67);
-        background-color: rgb(114, 114, 114);
+        background-color: rgb(168, 164, 164);
         color: white;
     }
 
@@ -22,7 +21,7 @@
         text-align: center;
         border-style: ridge;
         height: 20vh;
-        margin-left: 5vw;
+        margin-left: 4vw;
         border-radius: 60%;
         padding-top: 3vh;  
     }
@@ -35,7 +34,7 @@
 
     .namesec{
         font-size: 4vh;
-        padding-top: 8vh;
+        padding-top: 4vh;
     }
     
     .contactsec{
@@ -43,74 +42,101 @@
         padding-top: 4vh;
         padding-left: 1vw;
         box-shadow: 5px 5px 0px  rgb(4, 91, 98);
-        background-color: rgb(114, 114, 114);
+        background-color: rgb(168, 164, 164);
         color: white;
         margin-top: 2vh;
         font-size: 3vh;
     }
 
-    .expheader{
-        height: 10vh;
-        padding-left: 1vw;
-        box-shadow: 5px 5px 0px  rgb(4, 91, 98);
-        background-color: rgb(114, 114, 114);
-        color: white;
-        margin-top: 2vh;
-        text-align: center;
-        font-size: 4vh;
-        padding-top:2vh;
-    }
-
     .expsec{
         height: 30vh;
         padding-top: 2vh;
-        padding-left: 1vw;
+        padding-left: 3vw;
         box-shadow: 5px 5px 0px  rgb(4, 91, 98);
-        background-color: rgb(114, 114, 114);
+        background-color: rgb(168, 164, 164);
         color: white;
         margin-bottom: 3vh;
+        font-size: 4vh;
+        margin-top: 4vh;
     }
 
     .emailsec{
         text-align: right;
         height: 5vh;
-        margin-bottom: 2vh;;
+        margin-bottom: 2vh;
     }
     .phoneSec{
         height: 5vh;
+    }
+    .expedit{
+        padding-left: 35vw;
+        margin-left: 10vw;
+    }
+    .licedit{
+        
+        width: 10vw;
+        border-style: dashed;
+        
+    }
+    .expheader{
+        height: 8vh;
+    }
+    body{
+        background: #f3f3f3;
     }
     
 </style>
 
 
-<div class=" container">
+<div class="container">
     <div class="row first">
         <div class="col-2 profilepic">
             <img src="" alt="profile pic">
         </div>
         <div class="col-4 namesec">
-            Nirajan Sangraula
+            {{profile.first_name}} {{profile.last_name}}<br>
+            {{profile.user.email}}
+            <a href="{% url 'updateprofile' profile.id %}"><br><span class="glyphicon glyphicon-pencil" style="color:white"></span></a>
         </div>
-    </div>
-    <div class="row contactsec">
-        {{profile.user.email}}<br><br>
-        3186803536
-    </div>
-    <div class="row expheader">
-         Experience
     </div>
     
+    
+    
     <div class="row expsec">
+        <div class="row">
+            <div class="col-8">
+                Experience
+            </div>
+            <div class="col-4">
+                <span>
+                    +
+                </span>
+                <span class="glyphicon glyphicon-edit">
+
+                </span>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+
         
-        <div class="col">
+    </div>
+    <div class="row expsec">
+        <div class="row">
+            <div class="col-8">
+                License & Certifications
+            </div>
+            <div class="col-4">
+                <span>
+                    +
+                </span>
+                <span class="glyphicon glyphicon-edit">
 
+                </span>
+            </div>
         </div>
-        <div class="col">
-
-        </div>
-        <div class="col">
-
-        </div>
+        
 
         
     </div>
