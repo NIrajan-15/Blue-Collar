@@ -15,6 +15,7 @@
         border-color: rgb(4, 91, 98);  
         border-width: 1vh;
         background-color: rgb(222, 223, 222);
+        margin-bottom: 2vh;
     }
 
     .main_container{
@@ -58,6 +59,13 @@
         
         margin-left: 6vw;
         padding-left: 2vw;
+    }
+    .postsubmit{
+        width: 10vw;
+        margin-left: 15vw;
+        margin-top: 1vh;
+        border-style: none;
+        background-color:rgb(4, 91, 98);
     }
     
     
@@ -105,7 +113,7 @@
             </div>        	
         </div>
         <div class="row">
-           <a href="{% url 'createpost' %}"> <button type="submit" value="Update" class="btn btn-primary btn-lg profilesubmit">Update</button></a>
+            <input type="submit" value="Share"  name="post" class="btn btn-primary btn-lg postsubmit">
         </div>
       
     </div>

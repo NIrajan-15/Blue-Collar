@@ -33,9 +33,17 @@ class Post(models.Model):
     description = models.CharField(max_length=500)
     created_at = models.DateField(default=datetime.now())
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-
+    
     def __str__(self):
         return self.description
+
+class Comments(models.Model):
+    comment = models.CharField(max_length=100)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    commentor = models.OneToOneField(UserProfile, on_delete= models.CASCADE)
+
+    def __str__(self):
+        return self.post.user_profile
 
 class Job(models.Model):
 
