@@ -46,3 +46,11 @@ class JobTypeForm(forms.Form):
     job_choices = [('part-time','part-time'),('full-time','full-time'),('contract','contract')]
 
     job_type = forms.CharField(max_length=10, label="Job Type", widget=forms.Select(choices=job_choices) )
+
+
+class CommentForm(ModelForm):
+    
+    class meta:
+        model = Comments
+        fields = "__all__"
+        exclude = ['commentor','post']

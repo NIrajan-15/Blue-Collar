@@ -1,3 +1,5 @@
+import re
+from xml.etree.ElementTree import Comment
 from .forms import *
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .models import *
@@ -55,13 +57,24 @@ def user_logout(request):
 
 @login_required(login_url='login')
 def home(request):
+
+    posts = Post.objects.all()
+    
     if request.method == "POST":
-        print("HI")
+        
         profile = UserProfile.objects.get(user=request.user)
-        desc = request.POST['description']
-        post = Post.objects.create(user_profile=profile, description=desc)
-        post.save()
-    return render(request, 'Job/Home.html')
+
+        if 'post' in request.POST:
+            desc = request.POST['description']
+            post = Post.objects.create(user_profile=profile, description=desc)
+            post.save()
+            redirect("/")
+    
+    context = {
+        'posts' : posts,
+    }
+
+    return render(request, 'Job/Home.html', context)
 
 @login_required(login_url='login')
 def jobs(request):
