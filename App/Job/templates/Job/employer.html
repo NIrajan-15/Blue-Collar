@@ -31,11 +31,10 @@
         .search{
             text-align: left;
             margin-left: 3vw;
+            
         }
 
-        .choose{
-            width: 10vw;
-        }
+       
 
         .location,.keyword{
             text-align: center;
@@ -106,26 +105,10 @@
             
         }
 
-        .keywords,.location,.choose{
-            width: 100%;
-            height: 4vh;
-            border-radius: 1vh;
-            border-style: none;
-            text-align: center;
+        .your_job{
+            margin-right: 1vw;
         }
 
-        .searchbutton
-        {
-            width: 100%;
-            color: white;
-            margin-top: 0.5vh;
-            
-        }
-
-        .sbtn{
-            background-color: rgb(186, 189, 189);
-            border-style: none;
-        }
 
     </style>
 
@@ -134,45 +117,31 @@
     <div class="main_container">
        
             <div class="search_box">
-                <form method="POST" class="form">
-                    {% csrf_token %}
-                
                     <div class="row search">
+                        <div class="col-9 keywords">
+                            <div class="row">
 
-                        <div class="col-3 keywords">
-                            <input class="keywords" type="text" placeholder="job tile ..">
+                                    <a href="{% url 'employer' %}"><button class="btn btn-primary your_job">Your Jobs</button></a>
+                                
+                                    <a href=""><button class="btn btn-info">+ Add New Job</button></a>
+                                
+                            </div>
                         </div>
-
-                        <div class="col-3 location">
-                            <input class="location" type="text" placeholder="location">
-                        </div>
-
-                        <div class="col-2 choose">
-                            <select class="choose" name="pets dropdown" id="pet-select">
-                                <option value="">-Job Type-</option>
-                                <option value="part-time">Part-Time</option>
-                                <option value="full-time">Full-Time</option>
-                                <option value="contract">Contract</option>
-                            </select>
-                        </div>
-
-                        <div class="col-1 searchbutton">
-                            <button class="btn btn-danger sbtn"><span class="glyphicon glyphicon-search "></span></button>
-                        </div>
-
+  
+                        
                         <div class="col-2 add_job">
-                            <a href="{% url 'employer' %}"><button type="button" class="btn btn-danger">Employer Mode</button></a>
+                            <a href="{% url 'jobs' %}"><button type="button" class="btn btn-primary">Employee Mode</button></a>
                         </div>
-
-                    </div> 
-                </form>
+                    </div>     
             </div>
             
         
-        
+        {% if your_jobs and not add_job %}
         <div class="row job">
             
             <div class="col-3 job_list">
+                <hr>
+                    <h5>You've Posted 9 jobs</h5>
                 <hr>
                 <div class="title">
                     <a href=""><h4>Cashier</h4></a>
@@ -238,8 +207,8 @@
                             <h4> Cashier </h4>
                         </div>
                         <div class="col" style="text-align:right;">
-                            <button type="button" class="btn btn-primary">Apply</button>
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-bookmark"></span></button>
+                            <button type="button" class="btn btn-primary">Applications</button>
+                            
                         </div>
                     </div>
                     <h5>Himalayan Cafe</h5>
@@ -294,26 +263,7 @@
                         often a temporary or training position. After an unspecified time of at least six months and upon completion 
                         of Management Accreditation Program requirements, the Assistant Manager may be promoted to Senior Assistant Manager, 
                         Theatre Manager, or General Manager.
-                        Now Hiring Immediately!
-                        What We Can Offer You:
-
-                        Every team member deserves the star treatment! Each career comes with a variety of benefits 
-                        for both hourly and salaried team members. *Benefits may vary by career category, see career
-                        listing for exact details*
-
-                        Employee Discount
-                        401k
-                        Growth Opportunities
-                        Education Assistance
-                        Health Benefits
-                        Parental Leave
-                        Paid Time Off
-                        Cinemark Assistant Managers assist in the overall operation of the theatre and ensure policies and 
-                        procedures are being followed and operational standards are achieved. They are cross-trained in all 
-                        departments to support where needed, and to provide inspirational training to all Employees. This is 
-                        often a temporary or training position. After an unspecified time of at least six months and upon completion 
-                        of Management Accreditation Program requirements, the Assistant Manager may be promoted to Senior Assistant Manager, 
-                        Theatre Manager, or General Manager.
+                        
                         <br>
                         
                         </p>
@@ -359,6 +309,13 @@
             
            
         </div>
+        {% endif %}
+
+        {% if not your_jobs and add_job %}
+        <div class="row job">
+
+        </div>
+        {% endif %}
         
     </div>
     

@@ -1,3 +1,4 @@
+from pickle import FALSE
 import re
 from xml.etree.ElementTree import Comment
 from .forms import *
@@ -114,4 +115,18 @@ def update_profile(request, pid):
     }
 
     return render(request, 'Job/update_profile.html', context)
+
+
+
+
+@login_required(login_url='login')
+def employer_mode(request,your_jobs,add_job):
+    
+    context = {
+        'your_jobs': your_jobs,
+        'add_job': add_job,
+        
+    }
+
+    return render(request,'Job/employer.html',context)
 
