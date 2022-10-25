@@ -3,25 +3,18 @@
 {% block content %}
     <style>
 
-        body{
-            
-        }
-
         .main_container{
             margin-top: 2vh;
             width: 60vw;
             margin-left: 20vw;
             margin-right: 20vw;
-            
-            
-            
+             
         }
 
         .post_input,.post_box{
             
             padding-top: 2vh;
             padding-left: 1vw;
-            
             border-color: rgb(4, 91, 98);  
             border-width: 1vh;
             margin-bottom: 2vh;
@@ -30,10 +23,12 @@
         }
 
         .post_input{
-            min-height: 40vh;
-            
+            min-height: 25vh;
+            margin-bottom: 2vh;
+            padding-bottom: 1vh;
             
         }
+
         .post_box{
             height: 30vh;
             padding-left: 10vw;
@@ -76,22 +71,16 @@
             text-align: justify;
             margin-left: 10vw;
             margin-right: 10vw;
-            margin-top: 5vh;
+            margin-top: 1vh;
             margin-bottom: 5vh;
             border-radius: 1vh;
             margin-bottom: 2vh;
             font-size: larger;
-            text-align: center;
             background-color: white;
             overflow-y: hidden;
-            min-height: 10vh;
-            text-align: center;
-            padding-top: 1vh;
-            
-            
+            min-height: 5vh;
+            padding: 1vh; 
         }
-
-       
 
         .experience{
             width: 40vw;
@@ -110,10 +99,6 @@
             background-color:rgb(4, 91, 98);
         }
 
-        
-
-        
-       
     </style>
 
     
@@ -132,8 +117,9 @@
         </div>
         
         <div></div>
+        {% for post in posts %}
         <div class="col post_input">
-            {% for post in posts %}
+            
             <div class="row post_top">
                 <div class="col-2 post_pic">
                     <h4> {{post.user_profile.first_name|slice:":1"}} {{post.user_profile.last_name|slice:":1"}} </h4>
@@ -149,9 +135,10 @@
             
            
             
-            {% endfor %}    
+             
         </div>
         
+        {% endfor %}
     </div>
     
     {% endblock %}

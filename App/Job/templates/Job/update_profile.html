@@ -3,19 +3,16 @@
 {% block content %}
 
 <style>
-    body{
-        background: #f3f3f3;
-    }
-
+    
     .post_input{
         height: 100vh;
         padding-top: 5vh;
         padding-left: 10vw;
-        border-style: inset;
         border-color: rgb(4, 91, 98);  
         border-width: 1vh;
-        background-color: rgb(222, 223, 222);
+        background-color: #f3f3f3;
         margin-bottom: 2vh;
+        border-radius: 1vh;
     }
 
     .main_container{
@@ -49,12 +46,6 @@
         border-radius: 1vh;
     }
 
-    .profilepic{
-        border-style: dashed;
-        margin-left: 11.5vw;
-        height: 30vh;
-        width: 15vw;
-    }
     .updateform{
         
         margin-left: 6vw;
@@ -82,9 +73,6 @@
         <form action="." method="POST">
         {% csrf_token %}
         
-        <div class="col profilepic">
-
-        </div>
         <div class="col updateform">
         
             

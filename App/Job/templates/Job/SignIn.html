@@ -16,51 +16,66 @@
 
     <style>
 
+        .signinheader{
+            background-color: rgb(4, 91, 98);
+            height: 5vh;
+            text-align: center;
+            color: white;
+        }
 
+        .container1{
+            height: 58vh;
+            
+            text-align: center;
+            margin-top: 15vh;
+            margin-bottom: 15vh;
+            padding-top: 10vh;
+            padding-left: 10vh;
+            padding-right: 10vh;
+            width: 50vw;
+            margin-left: 50vh;
+            background-color: rgb(4, 91, 98);
+            border-radius: 2vh;
+            
+            
+        }
+        .email{
+            width: 25vw;
+            height: 5vh;
+            margin-bottom: 2vh;
+            border-radius: 1vh;
+            border-style: none;
+            text-align: center;
+        }
+        .login{
+            width: 25vw;
+            height: 5vh;
+            text-align: center;
+            margin-bottom: 2vh;
+            border-radius: 1vh;
+            border-style: none;
+            background-color: #33b1e2;
+            
+        }
 
+        .login_box{
+            background-color:rgb(4, 91, 98);
+            width: 40vw;
+            margin-left: 30vw;
+            margin-right: 30vw;
+            padding-top: 5vh;
+            padding-left: 7vw;
+            padding-right: 8vw;
+            height: 50vh;
+            margin-top: 20vh;
+            margin-bottom: 20vh;
+        
+        }
 
-.signinheader{
-    background-color: rgb(4, 91, 98);
-    height: 6vh;
-    text-align: center;
-    color: white;
-}
-
-.container1{
-    height: 58vh;
-    
-    text-align: center;
-    margin-top: 15vh;
-    margin-bottom: 15vh;
-    padding-top: 10vh;
-    padding-left: 10vh;
-    padding-right: 10vh;
-    width: 50vw;
-    margin-left: 50vh;
-    background-color: rgb(4, 91, 98);
-    border-radius: 2vh;
-    
-    
-}
-.email{
-    width: 25vw;
-    height: 5vh;
-    margin-bottom: 2vh;
-    border-radius: 1vh;
-    border-style: none;
-    text-align: center;
-}
-.login{
-    width: 25vw;
-    height: 5vh;
-    text-align: center;
-    margin-bottom: 2vh;
-    border-radius: 1vh;
-    border-style: none;
-    
-
-    
-}
+        .forgot{
+            text-align: center;
+            color: #5cabf5;
+        }
 
     </style>
 </head>
@@ -68,7 +83,7 @@
     <div class="signinheader">
         <h2> Blue Collar. </h2>
     </div>
-    <div id="logreg-forms" class="container1">
+    <div id="logreg-forms" class="container login_box">
         <form method="POST" class="form">
             {% csrf_token %}
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> </h1>
@@ -82,7 +97,7 @@
             {% endfor %}
             
             <input type="submit" value="login" class="login"><br>
-            <a href="#" id="forgot_pswd" class="login" >Forgot password?</a>
+            <a href="#" id="forgot_pswd" class="forgot" >Forgot password?</a>
             <hr>
             
             <a href="{% url 'signup' %}"> <button class="login" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> New User? <u>Register Here</u></button> </a>

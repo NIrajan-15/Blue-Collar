@@ -20,11 +20,13 @@
 
     <style>
 
-        
+        body{
+            overflow-x: hidden;
+        }
 
         .top{
             background-color: rgb(4, 91, 98);
-            height: 6vh;
+            height: 5vh;
             text-align: center;
             color: rgb(255, 255, 255);   
          
@@ -35,11 +37,13 @@
             margin-top: 2vh;
             padding-top: 1vh;
             
+            
         }
 
         .navs{
             color: whitesmoke;
             padding-top: 1vh;
+            text-align: center;
         }
 
         .navs:hover{
@@ -60,6 +64,12 @@
             padding-top: 1vh;
             padding-right: 2vw;
         }
+        
+        .footer{
+            width: 105vw;
+            background-color: rgb(4, 91, 98);
+            height: 3vh;
+        }
 
 
     </style>
@@ -77,23 +87,29 @@
         </div>
         
         <div class="row cont top">
-            <div class="col-3 navs">
+            <div class="col navs">
                 <a href="{% url 'home' %}" class="navs"><span class="glyphicon glyphicon-home"></span></a>
             </div>
-            <div class="col-3 navs">
-                <a href="{% url 'profile' %}" class="navs"><span class="glyphicon glyphicon-user"></span></a>
-            </div>   
-            <div class="col-3 navs">
+               
+            <div class="col navs">
                 <a href="{% url 'jobs' %}" class="navs"><span class="glyphicon glyphicon-briefcase"></span></a>
             </div>
-            <div class="col-3 navs">
-                <a href="" class="navs">+ Add Job</a>
+
+            <div class="col navs">
+                <a href="{% url 'profile' %}" class="navs"><span class="glyphicon glyphicon-user"></span></a>
             </div>
+            
         </div>
 
         <div class="row">
             {%block content%}
             {% endblock %}
+        </div>
+        <div class="row footer">
+
+            
+
+
         </div>
                
     </div>

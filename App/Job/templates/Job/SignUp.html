@@ -43,12 +43,15 @@ body {
 	border-bottom: 3px solid #5cd3b4;
 }
 .signup-form form {
-	color: #999;
+	color: white;
 	border-radius: 3px;
 	margin-bottom: 15px;
-	background: #fff;
+	background: rgb(4, 91, 98);
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 	padding: 30px;
+	
+	
+	
 }
 .signup-form .form-group row {
 	margin-bottom: 20px;
@@ -72,7 +75,7 @@ body {
 	min-width: 140px;
 }
 .signup-form .btn:hover, .signup-form .btn:focus {
-	background: #41cba9;
+	background: rg;
 	outline: none !important;
 }
 .signup-form a {
@@ -107,13 +110,42 @@ body {
 .signup{
 	text-align: center;
 }
+
+.signinheader{
+	background-color: rgb(4, 91, 98);
+	height: 5vh;
+	text-align: center;
+	color: white;
+}
+
+.login_box{
+	background-color:rgb(4, 91, 98);
+	width: 40vw;
+	margin-left: 30vw;
+	margin-right: 30vw;
+	padding-top: 5vh;
+	padding-left: 7vw;
+	padding-right: 8vw;
+	height: 50vh;
+	margin-top: 20vh;
+	margin-bottom: 20vh;
+
+}
+
+.form{
+	margin-top: 15vh;
+	margin-bottom: 20vh;
+	
+}
 </style>
 </head>
 <body>
-	<div class="nameRow">
-		<h2></h2>Blue Collar.
-	</div>
-<div class="signup-form form">
+	<div class="signinheader">
+        <h2> Blue Collar. </h2>
+    </div>
+	
+
+	<div class="signup-form form">
     <form action="." method="POST" class="form-horizontal">
 		{% csrf_token %}
       				
@@ -145,6 +177,10 @@ body {
 		</div>		      
     </form>
 	<div class="text-center already">Already have an account? <a href="{% url 'login' %}">Login here</a></div>
+
+</div>
+<div class="signinheader">
+	
 </div>
 </body>
 </html>

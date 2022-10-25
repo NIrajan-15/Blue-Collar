@@ -10,7 +10,7 @@ from django import forms
 
 class CreateuserForm(UserCreationForm):
     username = forms.EmailField(label='Email', 
-                    widget=forms.TextInput(attrs={'placeholder': 'Email'}),required=True)
+                    widget=forms.TextInput(),required=True)
 
     class Meta:
         model = User

@@ -3,33 +3,37 @@
 {% block content %}
 
 <style>
+
+    body{
+        background-color: white;
+    }
     .container{
         margin-top: 2vh;
+        width: 60vw;
+        margin-left: 20vw;
+        margin-right: 20vw;
     }
     
-
     .first{
-        height: 30vh;
-        padding-top: 5vh;
-        box-shadow: 5px 5px 0px  rgb(21, 70, 67);
-        background-color: rgb(168, 164, 164);
-        color: white;
+        height: 20vh;
+        padding-top: 2vh;
+        background-color: #f3f3f3;
+        border-radius: 1vh;
+        color: black;
+        
     }
 
     .profilepic{
-        height: 20vh;
-        text-align: center;
-        border-style: ridge;
-        height: 20vh;
-        margin-left: 4vw;
-        border-radius: 60%;
-        padding-top: 3vh;  
-    }
-
-    img{
-        height: 8vh;
-        width: 5vw;
-        border-style: dashed;
+        border-style: double;
+        height: 10vh;
+        margin-left: 5vh;
+        border-radius: 50%;
+        padding-top: 2vh;
+        padding-left: 2vw;
+        background-color: rgb(4, 91, 98);
+        color: white;
+        margin-top: 2vh;
+        font-size: xx-large;
     }
 
     .namesec{
@@ -41,8 +45,8 @@
         height: 20vh;
         padding-top: 4vh;
         padding-left: 1vw;
-        box-shadow: 5px 5px 0px  rgb(4, 91, 98);
-        background-color: rgb(168, 164, 164);
+        border-radius: 1vh;
+        background-color: rgb(224, 224, 224);
         color: white;
         margin-top: 2vh;
         font-size: 3vh;
@@ -52,12 +56,12 @@
         height: 30vh;
         padding-top: 2vh;
         padding-left: 3vw;
-        box-shadow: 5px 5px 0px  rgb(4, 91, 98);
-        background-color: rgb(168, 164, 164);
-        color: white;
+        border-radius: 1vh;
+        background-color: #f3f3f3;
         margin-bottom: 3vh;
         font-size: 4vh;
         margin-top: 4vh;
+        text-align: center;
     }
 
     .emailsec{
@@ -81,22 +85,24 @@
     .expheader{
         height: 8vh;
     }
-    body{
-        background: #f3f3f3;
-    }
+    
     
 </style>
 
 
 <div class="container">
     <div class="row first">
-        <div class="col-2 profilepic">
-            <img src="" alt="profile pic">
+        <div class="col-2 ">
+            <div class="row profilepic">
+                {{profile.first_name|slice:"1"}} {{profile.last_name|slice:"1"}}
+            </div>
+            
         </div>
         <div class="col-4 namesec">
-            {{profile.first_name}} {{profile.last_name}}<br>
+           
             {{profile.user.email}}
-            <a href="{% url 'updateprofile' profile.id %}"><br><span class="glyphicon glyphicon-pencil" style="color:white"></span></a>
+            <a href="{% url 'updateprofile' profile.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+              
         </div>
     </div>
     
@@ -108,12 +114,12 @@
                 Experience
             </div>
             <div class="col-4">
-                <span>
-                    +
-                </span>
-                <span class="glyphicon glyphicon-edit">
-
-                </span>
+                <a href="#"><span>+</span>
+                </a>
+                <a href="#">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                
             </div>
         </div>
         <div class="row">
@@ -125,18 +131,19 @@
     <div class="row expsec">
         <div class="row">
             <div class="col-8">
-                License & Certifications
+                Certifications
             </div>
             <div class="col-4">
-                <span>
-                    +
-                </span>
-                <span class="glyphicon glyphicon-edit">
-
-                </span>
+                <a href="#"><span>+</span>
+                </a>
+                <a href="#">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
             </div>
         </div>
-        
+        <div class="row">
+
+        </div>
 
         
     </div>
