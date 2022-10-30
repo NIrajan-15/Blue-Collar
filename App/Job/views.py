@@ -11,8 +11,6 @@ from django.contrib import messages
 from .filters import *
 
 
-
-
 def Signup(request):
     
     if request.method == "POST":
@@ -30,6 +28,7 @@ def Signup(request):
     }    
     
     return render(request, 'Job/SignUp.html', context)
+
 
 def User_login(request):
 
@@ -51,10 +50,12 @@ def User_login(request):
     
     return render(request, 'Job/SignIn.html')
 
+
 @login_required(login_url='login')
 def user_logout(request):
     logout(request)
     return  redirect('login')
+
 
 @login_required(login_url='login')
 def home(request):
@@ -77,10 +78,12 @@ def home(request):
 
     return render(request, 'Job/Home.html', context)
 
+
 @login_required(login_url='login')
 def jobs(request):
     
     return render(request, 'Job/Jobs.html') 
+
 
 @login_required(login_url='login')
 def profile(request):
@@ -95,6 +98,7 @@ def profile(request):
 
     return render(request, 'Job/profile.html', context)
 
+
 @login_required(login_url='login')
 def update_profile(request, pid):
 
@@ -107,6 +111,7 @@ def update_profile(request, pid):
 
         if profileForm.is_valid():
             profileForm.save()
+            return redirect('')
     else:
         profileForm=UserProfileForm(instance=profile)
     context={
@@ -130,3 +135,11 @@ def employer_mode(request,your_jobs,add_job):
 
     return render(request,'Job/employer.html',context)
 
+
+@login_required(login_url="login")
+def add_job(request):
+
+    context = {
+        
+    }
+    return render(request,'Job/add_job.html', context)

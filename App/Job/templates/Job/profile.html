@@ -25,15 +25,16 @@
 
     .profilepic{
         border-style: double;
-        height: 10vh;
+        height: 11vh;
+        width: 11vh;
         margin-left: 5vh;
-        border-radius: 50%;
-        padding-top: 2vh;
-        padding-left: 2vw;
+        border-radius: 10vh;
+        padding-top: 3vh;
+        padding-left: 1.5vw;
         background-color: rgb(4, 91, 98);
         color: white;
         margin-top: 2vh;
-        font-size: xx-large;
+        font-size: x-large;
     }
 
     .namesec{
@@ -85,6 +86,13 @@
     .expheader{
         height: 8vh;
     }
+    .profileImage{
+        width: 13vh;
+        height: 13vh;
+        border-radius: 10vh;
+        margin-left: 2vw;
+        margin-top: 2vh;
+    }
     
     
 </style>
@@ -93,9 +101,10 @@
 <div class="container">
     <div class="row first">
         <div class="col-2 ">
-            <div class="row profilepic">
-                {{profile.first_name|slice:"1"}} {{profile.last_name|slice:"1"}}
-            </div>
+            
+            <img src="{% static 'images/Job/pic.jpg'%}" alt="pic" class="profileImage">
+                
+            
             
         </div>
         <div class="col-4 namesec">

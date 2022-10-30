@@ -1,4 +1,5 @@
 App/__pycache__
 Job/Migrations
 Job/__pycache__
+Job/static/images
 .env

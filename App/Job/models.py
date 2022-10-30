@@ -1,3 +1,4 @@
+from curses.ascii import NUL
 from email.policy import default
 from pydoc import describe
 from secrets import choice
@@ -8,6 +9,7 @@ from django.db.models.deletion import CASCADE
 from datetime import datetime
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from pymysql import NULL
 
 class UserProfile(models.Model):
     first_name = models.CharField(max_length=20)
@@ -33,6 +35,7 @@ class Post(models.Model):
     description = models.CharField(max_length=500)
     created_at = models.DateField(default=datetime.now())
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
     
     def __str__(self):
         return self.description
