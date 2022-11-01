@@ -123,6 +123,7 @@
     <div class="main_container">
         <div class="post_box">
             <form method="POST" class="form">
+                {% csrf_token %}
                 <input type="text"  class="experience" placeholder="Share Your Experience.." name="description" id="description">
                 <input type="submit" value="Share"  name="post" class="btn btn-primary btn-lg postsubmit">
             </form>    
@@ -133,7 +134,7 @@
                 {% if posts is not none %}
                     {% for post in posts %}
                         <div class="row post_top">
-                            <div class="col-4">
+                            <div class="col-2">
                                 <img src="{% static 'images/Job/pic.jpg'%}" alt="pic" class="profileImage">
                             </div>
                             <div class="col-8 post_name">
@@ -142,7 +143,7 @@
                             </div>
                         </div>
 
-                        <div class="mainSub">
+                        <div class="row mainSub">
                             {{post.description}}
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse dolorem alias laboriosam neque reiciendis nostrum eveniet facere placeat aliquid, expedita minus adipisci numquam cumque velit. Nemo fugiat delectus quibusdam earum!
                             Ipsa omnis vel praesentium soluta, culpa voluptas quibusdam excepturi deleniti perspiciatis ut consectetur vitae accusantium quod dignissimos facere unde reprehenderit suscipit minus esse? Odit voluptatibus harum aliquid, soluta mollitia enim?

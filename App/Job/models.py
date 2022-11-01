@@ -52,7 +52,7 @@ class Comments(models.Model):
 
 class Job(models.Model):
 
-    time = [('part-time','part-time'),('full-time','full-time'),('contract','contract')]
+    time = [('Part-Time','Part-Time'),('Full-Time','Full-Time'),('Contract','Contract')]
 
     title = models.CharField(max_length=20)
     type = models.CharField(max_length=10, choices= time)
@@ -69,7 +69,7 @@ class Job(models.Model):
 
 
     def __str__(self):
-        return self.job_title
+        return self.title
 
 
 

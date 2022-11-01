@@ -79,14 +79,16 @@ def home(request):
 
     return render(request, 'Job/Home.html', context)
 
-
+pid = 1
 @login_required(login_url='login')
-def jobs(request):
-    
-    jobs = Job.objects.all()
+def jobs(request,pid):
 
+    jobs = Job.objects.all()
+    mainjob = Job.objects.get(id=pid)
+    print(mainjob)
     context={
         'jobs':jobs,
+        'mainjob':mainjob
     }
     
     return render(request, 'Job/Jobs.html',context) 
