@@ -1,5 +1,4 @@
 {% extends 'Job/base.html' %}{% load static %}
-
 {% block content %}
     <style>
 
@@ -8,10 +7,10 @@
             width: 60vw;
             margin-left: 20vw;
             margin-right: 20vw;
-             
+                
         }
 
-        .post_input,.post_box{
+        .main_post,.post_box{
             
             padding-top: 2vh;
             padding-left: 1vw;
@@ -22,10 +21,11 @@
             border-radius: 2vh;
         }
 
-        .post_input{
-            min-height: 25vh;
+        .main_post {
+            min-height: 48vh;
             margin-bottom: 2vh;
             padding-bottom: 1vh;
+            text-align: center;
             
         }
 
@@ -37,7 +37,6 @@
 
         .posts{
             margin-top: 2vh;
-            
             padding-top: 5vh;
             border-style: outset;
             border-color: rgb(4, 91, 98);  
@@ -45,7 +44,6 @@
         }
 
         .post_top{
-            
             width: 30vw;
             margin-left: 0vw;
         }
@@ -114,59 +112,51 @@
             margin-top: 2vh;
         }
 
+        .no_post{
+            text-align: center;
+            padding-top: 20vh;
+            min-height: 48vh;
+        }
+
     </style>
 
-    
-    
     <div class="main_container">
         <div class="post_box">
             <form method="POST" class="form">
-                {% csrf_token %}
-            <div class="row">
-                <input type="text" class="experience" placeholder="Share Your Experience.." name="description" id="description">
-            </div>
-            <div class="row">
+                <input type="text"  class="experience" placeholder="Share Your Experience.." name="description" id="description">
                 <input type="submit" value="Share"  name="post" class="btn btn-primary btn-lg postsubmit">
-            </div> 
             </form>    
         </div>
         
-        <div></div>
-        
         <div class="post_container">
-            {% if posts is not none %}
-            {% for post in posts %}
-            <div class="post_input">
-                
-                <div class="row post_top">
-                    <div class="col-4">
-                        <img src="{% static 'images/Job/pic.jpg'%}" alt="pic" class="profileImage">
-                    </div>
-                    <div class="col-8 post_name">
-                        <h4> {{post.user_profile.first_name}} {{post.user_profile.last_name}}  </h4> 
-                            {{post.created_at}}
-                    </div>
-                </div>
+            <div class="main_post">
+                {% if posts is not none %}
+                    {% for post in posts %}
+                        <div class="row post_top">
+                            <div class="col-4">
+                                <img src="{% static 'images/Job/pic.jpg'%}" alt="pic" class="profileImage">
+                            </div>
+                            <div class="col-8 post_name">
+                                <h4> {{post.user_profile.first_name}} {{post.user_profile.last_name}}  </h4> 
+                                    {{post.created_at}}
+                            </div>
+                        </div>
 
-                <div class="mainSub">
-                    {{post.description}}
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse dolorem alias laboriosam neque reiciendis nostrum eveniet facere placeat aliquid, expedita minus adipisci numquam cumque velit. Nemo fugiat delectus quibusdam earum!
-                    Ipsa omnis vel praesentium soluta, culpa voluptas quibusdam excepturi deleniti perspiciatis ut consectetur vitae accusantium quod dignissimos facere unde reprehenderit suscipit minus esse? Odit voluptatibus harum aliquid, soluta mollitia enim?
-                    Illo placeat, amet veniam dicta blanditiis ea veritatis aperiam earum, adipisci quos neque dignissimos suscipit! Quod illum tempore quasi corporis atque unde commodi accusamus deserunt ex voluptatibus? Itaque, nemo mollitia.`
-                </div>
-                
-               
-            </div>
-           
-        
-        {% endfor %}
-        {% endif %}
-        {% if posts is none %}
-            
-            <h5>Sorry! No Posts Available at the moment.</h5>
-        
-        </div>
-        {% endif %}
+                        <div class="mainSub">
+                            {{post.description}}
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse dolorem alias laboriosam neque reiciendis nostrum eveniet facere placeat aliquid, expedita minus adipisci numquam cumque velit. Nemo fugiat delectus quibusdam earum!
+                            Ipsa omnis vel praesentium soluta, culpa voluptas quibusdam excepturi deleniti perspiciatis ut consectetur vitae accusantium quod dignissimos facere unde reprehenderit suscipit minus esse? Odit voluptatibus harum aliquid, soluta mollitia enim?
+                            Illo placeat, amet veniam dicta blanditiis ea veritatis aperiam earum, adipisci quos neque dignissimos suscipit! Quod illum tempore quasi corporis atque unde commodi accusamus deserunt ex voluptatibus? Itaque, nemo mollitia.`
+                        </div>
+                        {% endfor %}
+                {% endif %}
+
+                {% if not post is not none %}
+                    <h3>Sorry! No Posts Available at the moment.</h3>  
+                {% endif %}
+              
+            </div>      
+        </div>    
     </div>
     {% endblock %}
     

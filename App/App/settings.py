@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'Job',
     'crispy_forms',
+    'django_wysiwyg',
+    'ckeditor',
+    
+    
     
 ]
 

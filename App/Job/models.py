@@ -10,10 +10,12 @@ from datetime import datetime
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from pymysql import NULL
+from requests import request
+from ckeditor.fields import RichTextField
 
 class UserProfile(models.Model):
     first_name = models.CharField(max_length=20)
-    middle_name = models.CharField(max_length=20)
+    middle_name = models.CharField(max_length=20,null=True,default=None)
     last_name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length = 10)
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
@@ -52,15 +54,18 @@ class Job(models.Model):
 
     time = [('part-time','part-time'),('full-time','full-time'),('contract','contract')]
 
-    job_title = models.CharField(max_length=20)
-    job_description = models.CharField(max_length=100)
-    employer = models.CharField(max_length = 20)
-    responsibilities = models.CharField(max_length=100)
-    job_type = models.CharField(max_length=10, choices= time)
+    title = models.CharField(max_length=20)
+    type = models.CharField(max_length=10, choices= time)
+    street_address = models.CharField(max_length=30)
+    pay_range = models.CharField(max_length=20,null=True)
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=30)
-    country = models.CharField(max_length=30)
+    scheduleable = models.BooleanField()
+    business_name = models.CharField(max_length=30,null=True)
     zip_code = models.IntegerField()
+    job_description = RichTextField(blank=True, null=True)
+    responsibilities = RichTextField(blank=True, null=True)
+    employer = models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=True)
 
 
     def __str__(self):
@@ -73,3 +78,4 @@ class Job(models.Model):
 def create_userprofile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+

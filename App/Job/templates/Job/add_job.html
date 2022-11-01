@@ -1,18 +1,39 @@
 {% extends 'Job/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 <style>
     .container{
         margin-top: 2vh;
         margin-bottom: 2vh;
         min-height: 80vh;
-        border-style: dotted;
+        width: 60vw;
+        margin-left: 20vw;
+        margin-right: 20vw;
+        background-color: #f3f3f3;
+        border-radius: 2vh;
+        padding-top: 4vh;
+    }
+    
+    .addjob_btn{
+        width: 10vw;
+        margin-left: 23vw;
+        margin-right: 25vw;
+
     }
 </style>
 
-<div class="container">
-    <div class="row">
+<div class="col container">
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        {{form.media}}
+        <div class="row addjob_btn">
+            <input type="submit" value="Add Job"  name="post" class="btn btn-primary btn-lg postsubmit">
+        </div>
+    </form>
         
-    </div>
+    
 </div>
 {% endblock %}

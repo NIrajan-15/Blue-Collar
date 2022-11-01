@@ -1,3 +1,4 @@
+from cProfile import Profile
 from pickle import FALSE
 import re
 from xml.etree.ElementTree import Comment
@@ -70,7 +71,7 @@ def home(request):
             desc = request.POST['description']
             post = Post.objects.create(user_profile=profile, description=desc)
             post.save()
-            redirect("/")
+            redirect('/')
     
     context = {
         'posts' : posts,
@@ -82,12 +83,18 @@ def home(request):
 @login_required(login_url='login')
 def jobs(request):
     
-    return render(request, 'Job/Jobs.html') 
+    jobs = Job.objects.all()
+
+    context={
+        'jobs':jobs,
+    }
+    
+    return render(request, 'Job/Jobs.html',context) 
 
 
 @login_required(login_url='login')
 def profile(request):
-    print(request.user)
+    
     if (UserProfile.objects.get(user=request.user) is not None):
         profile = UserProfile.objects.get(user=request.user)
     else:
@@ -111,7 +118,7 @@ def update_profile(request, pid):
 
         if profileForm.is_valid():
             profileForm.save()
-            return redirect('')
+            return redirect('/')
     else:
         profileForm=UserProfileForm(instance=profile)
     context={
@@ -120,9 +127,6 @@ def update_profile(request, pid):
     }
 
     return render(request, 'Job/update_profile.html', context)
-
-
-
 
 @login_required(login_url='login')
 def employer_mode(request,your_jobs,add_job):
@@ -135,11 +139,26 @@ def employer_mode(request,your_jobs,add_job):
 
     return render(request,'Job/employer.html',context)
 
-
+ 
 @login_required(login_url="login")
 def add_job(request):
+    form = NewJobForm()
+    if(request.method=='POST'):
+
+        form = NewJobForm(request.POST)
+        profile = UserProfile.objects.get(user=request.user)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.employer = profile
+            obj.save()
+            
+            return redirect('/')
+        else:
+            form = NewJobForm(request.POST)
 
     context = {
-        
+        'form': form
     }
     return render(request,'Job/add_job.html', context)
+
+

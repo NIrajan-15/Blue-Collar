@@ -7,4 +7,4 @@ class JobsFilter(django_filters.FilterSet):
     note = CharFilter(field_name='name',lookup_expr='icontains')
     class Meta:
         model = Job
-        fields= ['city','state','country','zip_code']
+        fields= ['city','state','zip_code']

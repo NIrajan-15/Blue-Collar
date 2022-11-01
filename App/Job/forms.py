@@ -24,6 +24,7 @@ class CreateuserForm(UserCreationForm):
         return user
 
 class UserProfileForm(ModelForm):
+    middle_name = forms.CharField(required=False)
     class Meta:
         model = UserProfile
         fields = '__all__'
@@ -39,7 +40,7 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
-        exclude = ['user_profile']
+        exclude = ['user_profile','created_at']
 
 class JobTypeForm(forms.Form):
 
@@ -48,7 +49,8 @@ class JobTypeForm(forms.Form):
     job_type = forms.CharField(max_length=10, label="Job Type", widget=forms.Select(choices=job_choices) )
 
 class NewJobForm(ModelForm):
-
-    class meta:
+    class Meta:
         model = Job
         fields = '__all__'
+        exclude = ['employer']
+        
