@@ -35,44 +35,32 @@ class Experience(models.Model):
 
 class Post(models.Model):
     description = models.CharField(max_length=500)
-    created_at = models.DateField(default=datetime.now())
+    created_at = models.DateField()
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     
     def __str__(self):
         return self.description
 
-class Comments(models.Model):
-    comment = models.CharField(max_length=100)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    commentor = models.OneToOneField(UserProfile, on_delete= models.CASCADE)
-
-    def __str__(self):
-        return self.post.user_profile
 
 class Job(models.Model):
 
-    time = [('Part-Time','Part-Time'),('Full-Time','Full-Time'),('Contract','Contract')]
+    time = [('Part-time','Part-time'),('Full-time','Full-time'),('Contract','Contract'),('Scheduleable','Scheduleable')]
 
     title = models.CharField(max_length=20)
-    type = models.CharField(max_length=10, choices= time)
+    type = models.CharField(max_length=15, choices= time)
     street_address = models.CharField(max_length=30)
     pay_range = models.CharField(max_length=20,null=True)
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=30)
-    scheduleable = models.BooleanField()
     business_name = models.CharField(max_length=30,null=True)
     zip_code = models.IntegerField()
     job_description = RichTextField(blank=True, null=True)
-    responsibilities = RichTextField(blank=True, null=True)
     employer = models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=True)
 
 
     def __str__(self):
         return self.title
-
-
-
 
 @receiver(post_save, sender=User)
 def create_userprofile(sender, instance, created, **kwargs):

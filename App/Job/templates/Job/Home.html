@@ -22,7 +22,7 @@
         }
 
         .main_post {
-            min-height: 48vh;
+            min-height: 30vh;
             margin-bottom: 2vh;
             padding-bottom: 1vh;
             text-align: center;
@@ -65,15 +65,15 @@
         .post_name{
             margin-top: 2vh;
             width: 30vw;
+            text-align: left;
             
         }
 
         .mainSub{
             text-align: justify;
-            margin-left: 10vw;
-            margin-right: 10vw;
-            margin-top: 1vh;
-            margin-bottom: 5vh;
+            margin-left: 11vw;
+            margin-right: 2vw;
+            margin-top: -2vh;
             border-radius: 1vh;
             margin-bottom: 2vh;
             font-size: larger;
@@ -101,7 +101,7 @@
         }
 
         .post_container{
-            min-height: 50vh;
+            min-height: 30vh;
         }
 
         .profileImage{
@@ -118,6 +118,11 @@
             min-height: 48vh;
         }
 
+        .profile_pic{
+            text-align: right;
+        }
+
+
     </style>
 
     <div class="main_container">
@@ -130,17 +135,19 @@
         </div>
         
         <div class="post_container">
+            {% if posts %}
+            {% for post in posts %}
             <div class="main_post">
-                {% if posts is not none %}
-                    {% for post in posts %}
+                
                         <div class="row post_top">
-                            <div class="col-2">
+                            <div class="col-4 profile_pic">
                                 <img src="{% static 'images/Job/pic.jpg'%}" alt="pic" class="profileImage">
                             </div>
-                            <div class="col-8 post_name">
-                                <h4> {{post.user_profile.first_name}} {{post.user_profile.last_name}}  </h4> 
-                                    {{post.created_at}}
+                            <div class="col-6 post_name">
+                                <h4> {{post.user_profile.first_name}} {{post.user_profile.last_name}}</h4> 
+                                <h5>{{post.created_at}}</h5>
                             </div>
+                            
                         </div>
 
                         <div class="row mainSub">
@@ -149,14 +156,14 @@
                             Ipsa omnis vel praesentium soluta, culpa voluptas quibusdam excepturi deleniti perspiciatis ut consectetur vitae accusantium quod dignissimos facere unde reprehenderit suscipit minus esse? Odit voluptatibus harum aliquid, soluta mollitia enim?
                             Illo placeat, amet veniam dicta blanditiis ea veritatis aperiam earum, adipisci quos neque dignissimos suscipit! Quod illum tempore quasi corporis atque unde commodi accusamus deserunt ex voluptatibus? Itaque, nemo mollitia.`
                         </div>
-                        {% endfor %}
-                {% endif %}
 
-                {% if not post is not none %}
-                    <h3>Sorry! No Posts Available at the moment.</h3>  
-                {% endif %}
-              
-            </div>      
+                        
+            </div> 
+            {% endfor %}
+            {% endif %}
+            {% if not posts %}
+                <h3>Sorry! No Posts Available at the moment.</h3>  
+            {% endif %}     
         </div>    
     </div>
     {% endblock %}

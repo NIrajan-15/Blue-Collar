@@ -11,10 +11,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('jobs/<str:pid>',views.jobs, name='jobs'),
     path('updateprofile/<str:pid>/', views.update_profile, name='updateprofile'),
-    path('employer/',views.employer_mode, {'your_jobs':True,'add_job':False} , name='employer'),
+    path('employer/<str:pid>/',views.employer_mode, name='employer'),
     path('add_job/',views.add_job, name="addJob"),
-    
-    
-    
-    
+     
 ]

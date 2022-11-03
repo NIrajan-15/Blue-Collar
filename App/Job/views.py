@@ -22,7 +22,6 @@ def Signup(request):
             return redirect('login')
    
     form = CreateuserForm()
-    
     context = {
         'form' : form
     
@@ -62,11 +61,10 @@ def user_logout(request):
 def home(request):
 
     posts = Post.objects.all()
-    
+
     if request.method == "POST":
         
         profile = UserProfile.objects.get(user=request.user)
-
         if 'post' in request.POST:
             desc = request.POST['description']
             post = Post.objects.create(user_profile=profile, description=desc)
@@ -79,18 +77,35 @@ def home(request):
 
     return render(request, 'Job/Home.html', context)
 
-pid = 1
+
 @login_required(login_url='login')
 def jobs(request,pid):
 
+    if request.method == "POST":
+        
+        jobfilter = JobsFilter(request.POST)
+        jobfilter.title = request.POST.get('title')
+        jobfilter.city = request.POST.get('city')
+        jobfilter.type = request.POST.get('type')
+        jobs = jobfilter.qs
+        mainjob = jobs[0]
+        context={
+        
+        'jobs':jobs,
+        'mainjob':mainjob
+        }
+
+        return render(request, 'Job/Jobs.html',context)
+    
     jobs = Job.objects.all()
     mainjob = Job.objects.get(id=pid)
-    print(mainjob)
     context={
+        
         'jobs':jobs,
         'mainjob':mainjob
     }
-    
+        
+
     return render(request, 'Job/Jobs.html',context) 
 
 
@@ -112,9 +127,8 @@ def profile(request):
 def update_profile(request, pid):
 
     profile = UserProfile.objects.get(id=pid)
-    
     profileForm = UserProfileForm(request.POST, instance=profile)
-    
+
     if request.method == "POST":
         profileForm = UserProfileForm(request.POST,instance=profile)
 
@@ -124,21 +138,33 @@ def update_profile(request, pid):
     else:
         profileForm=UserProfileForm(instance=profile)
     context={
-        'profileForm' : profileForm,
-        
+        'profileForm' : profileForm,   
     }
 
     return render(request, 'Job/update_profile.html', context)
 
 @login_required(login_url='login')
-def employer_mode(request,your_jobs,add_job):
+def employer_mode(request,pid):
+
+    profile = UserProfile.objects.get(user=request.user)
+    jobs = Job.objects.filter(employer=profile)
+    jobfilter = JobsFilter(request.GET)
+    jobfilter.title = request.GET.get('title')
+    jobfilter.city = request.GET.get('city')
+    jobfilter.type = request.GET.get('type')
+    jobs = jobfilter.qs
+    mainjob = Job.objects.get(id=pid)
+    numjob = 0
+
+    for x in jobs:
+        numjob += 1
     
     context = {
-        'your_jobs': your_jobs,
-        'add_job': add_job,
-        
+        'jobs':jobs,
+        'mainjob':mainjob,
+        'numJob':numjob
     }
-
+    
     return render(request,'Job/employer.html',context)
 
  

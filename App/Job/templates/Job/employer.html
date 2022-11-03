@@ -1,329 +1,319 @@
+
 {% extends 'Job/base.html' %}{% load static %}
 
 {% block content %}
-    <style>
+<style>
 
-        body{
-            color:rgb(4, 91, 98);
-        }
+    body{
+        color:rgb(4, 91, 98);
+    }
 
-        .main_container{
-            margin-top: 2vh;
-            width: 60vw;
-            margin-left: 20vw;
-            margin-right: 20vw;
-            min-height: 83vh;
-             
-        }
-
-        .search_box{
+    .main_container{
+        margin-top: 2vh;
+        width: 60vw;
+        margin-left: 20vw;
+        margin-right: 20vw;
+        min-height: 82vh;
             
-            border-color: rgb(4, 91, 98);  
-            border-width: 1vh;
-            margin-bottom: 2vh;
-            background-color: #f3f3f3;
-            border-radius: 2vh;
-            min-height: 6vh;
-            padding-top: 1vh;
-        }
+    }
 
+    .search_box{
         
-        .search{
-            text-align: left;
-            margin-left: 3vw;
-            
-        }
-
-       
-
-        .location,.keyword{
-            text-align: center;
-        }
-
-        .job{
-            background-color: #f3f3f3;
-            height: 70vh;
-            border-radius: 2vh;
-            padding: 1vw;
-            margin-left: -3vw;
-            margin-right: -3vw;
-            
-        }
-
-        .job_list{
-            margin-right: 2vw;
-            margin-left: 2vw;
-            
-        }
-
-        .job_list,.job_info{
-            
-            
-            background-color: white;
-            height: 66vh;
-            overflow-y: scroll;
-            scroll-behavior: smooth;
-            
-        }
-
-        .job_info{
-            padding-left: 2vw;
-            padding-right: 2vw;
-        }
-
-        .job_title,.title{
-            margin-top: 2vh;
-        }
-
-        .job_tile{
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            min-height: 5vh;
-        }
-
-        .details{
-            background-color: #f3f3f3;
-            height: 4vh;
-            padding-top: 1vh;
-            margin-left: 1vh;
-            margin-right: 1vh;
-            text-align: center;
-        }
-
-        .job_details{
-            text-align: center;
-            color:rgb(4, 91, 98);
-        }
-
-        .job_description,.job_requirements{
-            text-align: center;
-        }
-
-        .description,.requirements{
-            text-align: justify;
-            
-        }
-
-        .your_job{
-            margin-right: 1vw;
-        }
-
-
-    </style>
+        border-color: rgb(4, 91, 98);  
+        border-width: 1vh;
+        margin-bottom: 2vh;
+        background-color: #f3f3f3;
+        border-radius: 2vh;
+        min-height: 6vh;
+        padding-top: 1vh;
+    }
 
     
-    
-    <div class="main_container">
-       
-            <div class="search_box">
-                    <div class="row search">
-                        <div class="col-9 keywords">
-                            <div class="row">
-
-                                    <a href="{% url 'employer' %}"><button class="btn btn-primary your_job">Your Jobs</button></a>
-                                
-                                    <a href="{% url 'addJob' %}"><button class="btn btn-info">+ Add New Job</button></a>
-                                
-                            </div>
-                        </div>
-  
-                        
-                        <div class="col-2 add_job">
-                            <a href="{% url 'jobs' 1%}"><button type="button" class="btn btn-primary">Employee Mode</button></a>
-                        </div>
-                    </div>     
-            </div>
+    .search{
             
+    }
+
+    .choose{
+        width: 10vw;
+    }
+
+    .location,.keyword{
+        text-align: center;
+    }
+
+    .job{
+        background-color: #f3f3f3;
+        height: 70vh;
+        border-radius: 2vh;
+        padding: 1vw;
+        margin-left: -3vw;
+        margin-right: -3vw;
+        padding-left: 0vw;
+        padding-right: 0vw;
         
-        {% if your_jobs and not add_job %}
-        <div class="row job">
+        
+    }
+
+    .job_list{
+        margin-right: 2vw;
+        margin-left: 2vw;
+        
+    }
+
+    .job_list,.job_info{
+        
+        
+        background-color: white;
+        height: 66vh;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+        
+    }
+
+    .job_info{
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+
+    .job_title,.title{
+        margin-top: 2vh;
+    }
+
+    .job_tile{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        min-height: 5vh;
+    }
+
+    .details{
+        background-color: #f3f3f3;
+        height: 4vh;
+        padding-top: 1vh;
+        margin-left: 1vh;
+        margin-right: 1vh;
+        text-align: center;
+    }
+
+    .job_details{
+        text-align: center;
+        color:rgb(4, 91, 98);
+    }
+
+    .job_description,.job_requirements{
+        text-align: center;
+        padding-left: -5vw;
+        
+        
+    }
+
+    .description,.requirements{
+        text-align: justify;
+        
+        
+    }
+
+    .keywords,.location,.choose{
+        width: 100%;
+        height: 4vh;
+        border-radius: 1vh;
+        border-style: none;
+        text-align: center;
+    }
+
+    .searchbutton
+    {
+        width: 100%;
+        color: white;
+        margin-top: 0.5vh;
+        
+    }
+
+    .sbtn{
+        background-color: rgb(186, 189, 189);
+        border-style: none;
+        margin-top: -0.2vh;
+        margin-left: -1vh;
+    }
+
+    .title{
+        background-color: white;
+        border-style: none;
+        border-color: rgb(4, 91, 98);
+        text-align: justify;
+        margin-top: -2vh;
+        width: 14vw;
+    }
+
+    .addJobButton{
+
+        margin-top: 2vh;
+        margin-left: 4vw;
+        margin-right: 2vw;
+    }
+    .numjobs{
+        text-align: center;
+    }
+
+    .employerMode{
+        margin-left: -3vw;
+        margin-top: 0.2vh;
+    }
+
+    .searchand{
+        margin-left: -3vw;
+        margin-right: -3vw;
+    }
+
+</style>
+
+<div class="main_container">
+    
+    
+
+    <div class="searchand">
+
+        <div class="col search_box">
+            <form method="POST" class="form">
+                {% csrf_token %}
             
-            <div class="col-3 job_list">
-                <hr>
-                    <h5>You've Posted 9 jobs</h5>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
-                <div class="title">
-                    <a href=""><h4>Cashier</h4></a>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
-                </div>
-                <hr>
+                <div class="row search">
+                    
+                    <div class="col-4 keywords">
+                        <input class="location" name="title" type="text" placeholder="title..">
+                    </div>
+
+                    <div class="col-4 location">
+                        <input class="location" name="location" type="text" placeholder="location..">
+                    </div>
+
+                    <div class="col-2 choose">
+                        <select class="choose" name="type dropdown" id="pet-select">
+                            <option value="">Job Type</option>
+                            <option value="part-time">Part-Time</option>
+                            <option value="full-time">Full-Time</option>
+                            <option value="contract">Contract</option>
+                        </select>
+                    </div>
+
+                    <div class="col-1 searchbutton">
+                        <button class="btn btn-danger sbtn"><span class="glyphicon glyphicon-search "></span></button>
+                    </div>
+
+                    <div class="col-1 employerMode">
+            
+                        <a href="{% url 'jobs' 1%}"><button type="button" class="btn btn-primary">Employee Mode</button></a>
+                    </div>
+                </div> 
+            </form>
+        </div>
+
+    </div>
+
+    
+
+    <div class="row job">
+        
+        <div class="col-3 job_list">
+            <hr>
+        
+            <div class="row addJobButton">
+                <a href="{% url 'addJob' %}"><button type="button" class="btn btn-primary">+ Add Job</button></a>
             </div>
 
-            <div class="col-8 job_info">
-                <div class="job_title">
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            <h4> Cashier </h4>
-                        </div>
-                        <div class="col" style="text-align:right;">
-                            <button type="button" class="btn btn-primary">Applications</button>
-                            
-                        </div>
+            <hr>
+
+            <h5 class="numjobs">You've added {{numJob}} Jobs</h5>
+            
+            <hr>
+            <button class="title" name="change">
+                <h4>{{mainjob.title}}</h4>
+                <h5>{{mainjob.business_name}}</h5>
+                <h5>{{mainjob.city}}, {{mainjob.state}}, USA</h5>
+            </button>
+            <hr>
+            {% if jobs is not none %}
+            {% for job in jobs %}
+            {% if job is not mainjob %}
+            <a href="{% url 'employer' job.id %}">
+            <button class="title" name="change">
+                <h4>{{job.title}}</h4>
+                <h5>{{job.business_name}}</h5>
+                <h5>{{job.city}}, {{job.state}}, USA</h5>
+            </button>
+            </a>
+            {% endif %}
+            <hr>
+            
+            {% endfor %}
+            {% endif %}
+
+            {% if not jobs is not none %}
+                <h4>Sorry! 0 jobs available.</h4>
+                <hr>
+            {% endif %}   
+            
+        </div>
+        
+        <div class="col-8 job_info">
+            
+            <div class="job_title">
+                <hr>
+                <div class="row">
+                    <div class="col-9">
+                        <h4> {{mainjob.title}} </h4>
+                        <h5>{{mainjob.business_name}}</h5>
+                        <h5>{{mainjob.street_address}}, {{mainjob.city}}, {{mainjob.state}}, {{mainjob.zip_code}}.</h5>
                     </div>
-                    <h5>Himalayan Cafe</h5>
-                    <h5>3500 Concordia street, Monroe, LA, 71203.</h5>
+                    <div class="col-3" style="text-align:right;">
+                        <button type="button" class="btn btn-primary">Applications</button>
+                        
+                    </div>
                 </div>
+                
+            </div>
 
-                <div class="job_details">
-                    <hr>
-                    <h4>Job Details</h4>
-                    <hr>
-                    <div class="row job_section">
-                        <div class="col details">
-                            Part-Time
-                        </div>
-                        <div class="col details">
-                            schedulable
-                        </div>
-                        <div class="col details">
-                            Morning Shift
-                        </div>
-                        <div class="col details">
-                            Day Shift
-                        </div>
-                        <div class="col details">
-                            Evening Shift
-                        </div>
+            <div class="job_details">
+                <hr>
+                
+                <div class="row job_section">
+                    <div class="col details">
+                        {{mainjob.type}}
                     </div>
-                </div>
-                <div class="job_description">
-                    <hr>
-                    <h4> Job Description </h4>
-                    <hr>
-                    <div class="description">
-                        <p>
-                        Now Hiring Immediately!
-                        What We Can Offer You:
-
-                        Every team member deserves the star treatment! Each career comes with a variety of benefits 
-                        for both hourly and salaried team members. *Benefits may vary by career category, see career
-                        listing for exact details*
-
-                        Employee Discount
-                        401k
-                        Growth Opportunities
-                        Education Assistance
-                        Health Benefits
-                        Parental Leave
-                        Paid Time Off
-                        Cinemark Assistant Managers assist in the overall operation of the theatre and ensure policies and 
-                        procedures are being followed and operational standards are achieved. They are cross-trained in all 
-                        departments to support where needed, and to provide inspirational training to all Employees. This is 
-                        often a temporary or training position. After an unspecified time of at least six months and upon completion 
-                        of Management Accreditation Program requirements, the Assistant Manager may be promoted to Senior Assistant Manager, 
-                        Theatre Manager, or General Manager.
-                        
-                        <br>
-                        
-                        </p>
-                        
+                    {% if mainjob.schedulable %}
+                    <div class="col details">
+                        schedulable
                     </div>
+                    {% endif %}
                     
-                </div>
-                <div class="job_requirements">
-                    <hr>
-                    <h4> Job Requirements </h4>
-                    <hr>
-                    <div class="requirements">
-                        <p>
-                        Now Hiring Immediately!
-                        What We Can Offer You:
-
-                        Every team member deserves the star treatment! Each career comes with a variety of benefits 
-                        for both hourly and salaried team members. *Benefits may vary by career category, see career
-                        listing for exact details*
-
-                        Employee Discount
-                        401k
-                        Growth Opportunities
-                        Education Assistance
-                        Health Benefits
-                        Parental Leave
-                        Paid Time Off
-                        Cinemark Assistant Managers assist in the overall operation of the theatre and ensure policies and 
-                        procedures are being followed and operational standards are achieved. They are cross-trained in all 
-                        departments to support where needed, and to provide inspirational training to all Employees. This is 
-                        often a temporary or training position. After an unspecified time of at least six months and upon completion 
-                        of Management Accreditation Program requirements, the Assistant Manager may be promoted to Senior Assistant Manager, 
-                        Theatre Manager, or General Manager.
-                        
-                        <br>
-                        
-                        </p>
-                        
+                    <div class="col details">
+                        ${{mainjob.pay_range}}
                     </div>
-                    
+                    <div class="col details">
+                        Free Food
+                    </div>
                 </div>
             </div>
-            
-           
-        </div>
-        {% endif %}
+            <div class="job_description">
+                <hr>
+                <h4> Job Description </h4>
+                <hr>
+                <div class="description">
+                {{mainjob.job_description|safe}}
+                <br>  
+                </div>
+                
+            </div>
 
-        {% if not your_jobs and add_job %}
-        <div class="row job">
-
         </div>
-        {% endif %}
         
     </div>
     
-    
+</div>
         
-       
-    {% endblock %}
+{% endblock %}
+        
     
-
-
-
+    
+    
+    

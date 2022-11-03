@@ -9,9 +9,9 @@
 
         .main_container{
             margin-top: 2vh;
-            width: 80vw;
-            margin-left: 10vw;
-            margin-right: 10vw;
+            width: 60vw;
+            margin-left: 20vw;
+            margin-right: 20vw;
             min-height: 82vh;
              
         }
@@ -25,12 +25,6 @@
             border-radius: 2vh;
             min-height: 6vh;
             padding-top: 1vh;
-        }
-
-        
-        .search{
-            text-align: left;
-            margin-left: 3vw;
         }
 
         .choose{
@@ -48,6 +42,8 @@
             padding: 1vw;
             margin-left: -3vw;
             margin-right: -3vw;
+            padding-left: 0vw;
+            padding-right: 0vw;
             
             
         }
@@ -100,15 +96,11 @@
 
         .job_description,.job_requirements{
             text-align: center;
-            padding-left: -5vw;
-            
-            
+            padding-left: -5vw;   
         }
 
         .description,.requirements{
-            text-align: justify;
-            
-            
+            text-align: justify; 
         }
 
         .keywords,.location,.choose{
@@ -123,13 +115,14 @@
         {
             width: 100%;
             color: white;
-            margin-top: 0.5vh;
-            
+            margin-top: 0.5vh;   
         }
 
         .sbtn{
             background-color: rgb(186, 189, 189);
             border-style: none;
+            margin-top: -0.2vh;
+            margin-left: -1vh;
         }
 
         .title{
@@ -138,29 +131,42 @@
             border-color: rgb(4, 91, 98);
             text-align: justify;
             margin-top: -2vh;
+            width: 14vw;
+        }
+
+        .employerMode{
+            margin-left: -3vw;
+            margin-top: 0.2vh;
+        }
+
+        .searchand{
+            margin-left: -3vw;
+            margin-right: -3vw;
         }
 
     </style>
 
     <div class="main_container">
-       
-            <div class="search_box">
+        
+            <div class="searchand">
+
+            <div class="col search_box">
                 <form method="POST" class="form">
                     {% csrf_token %}
                 
                     <div class="row search">
-
-                        <div class="col-3 keywords">
-                            <input class="keywords" type="text" placeholder="job tile ..">
+                        
+                        <div class="col-4 keywords">
+                            <input class="location" name="title" type="text" placeholder="title..">
                         </div>
 
-                        <div class="col-3 location">
-                            <input class="location" type="text" placeholder="location">
+                        <div class="col-4 location">
+                            <input class="location" name="location" type="text" placeholder="location..">
                         </div>
 
                         <div class="col-2 choose">
-                            <select class="choose" name="pets dropdown" id="pet-select">
-                                <option value="">-Job Type-</option>
+                            <select class="choose" name="type dropdown" id="pet-select">
+                                <option value="">Job Type</option>
                                 <option value="part-time">Part-Time</option>
                                 <option value="full-time">Full-Time</option>
                                 <option value="contract">Contract</option>
@@ -171,27 +177,41 @@
                             <button class="btn btn-danger sbtn"><span class="glyphicon glyphicon-search "></span></button>
                         </div>
 
-                        <div class="col-2 add_job">
-                            <a href="{% url 'employer' %}"><button type="button" class="btn btn-danger">Employer Mode</button></a>
+                        <div class="col-1 employerMode">
+                
+                            <a href="{% url 'employer' 1%}"><button type="button" class="btn btn-danger">Employer Mode</button></a>
                         </div>
-
                     </div> 
                 </form>
             </div>
-            
+
+        </div>
+
         <div class="row job">
             
             <div class="col-3 job_list">
                 <hr>
+                
+                    <button class="title" name="change">
+                        <h4>{{mainjob.title}}</h4>
+                        <h5>{{mainjob.business_name}}</h5>
+                        <h5>{{mainjob.city}}, {{mainjob.state}}, USA</h5>
+                    </button>
+                
+                <hr>
                 {% if jobs is not none %}
                 {% for job in jobs %}
-                <a href="{% url 'jobs' job.id %}">
-                <button class="title" name="change">
-                    <h4>{{job.title}}</h4>
-                    <h5>{{job.business_name}}</h5>
-                    <h5>{{job.street_address}}, {{job.city}}, {{job.state}}, {{job.zip_code}}.</h5>
-                </button>
-                </a>
+                {% if job is not mainjob %}
+                    
+                    <a href="{% url 'jobs' job.id %}">
+                        <button class="title" name="change">
+                            <h4>{{job.title}}</h4>
+                            <h5>{{job.business_name}}</h5>
+                            <h5>{{job.city}}, {{job.state}}, USA</h5>
+                        </button>
+                        </a>
+                {% endif %}
+                
                 <hr>
                 
                 {% endfor %}
@@ -200,9 +220,7 @@
                 {% if not jobs is not none %}
                     <h4>Sorry! 0 jobs available.</h4>
                     <hr>
-                {% endif %}
-                
-                
+                {% endif %}   
                 
             </div>
             
@@ -211,12 +229,12 @@
                 <div class="job_title">
                     <hr>
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-9">
                             <h4> {{mainjob.title}} </h4>
                             <h5>{{mainjob.business_name}}</h5>
                             <h5>{{mainjob.street_address}}, {{mainjob.city}}, {{mainjob.state}}, {{mainjob.zip_code}}.</h5>
                         </div>
-                        <div class="col-2" style="text-align:right;">
+                        <div class="col-3" style="text-align:right;">
                             <button type="button" class="btn btn-primary">Apply</button>
                             <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-bookmark"></span></button>
                         </div>
@@ -226,15 +244,16 @@
 
                 <div class="job_details">
                     <hr>
-                    <h4>Job Details</h4>
-                    <hr>
+                    
                     <div class="row job_section">
                         <div class="col details">
                             {{mainjob.type}}
                         </div>
+                        {% if mainjob.schedulable %}
                         <div class="col details">
                             schedulable
                         </div>
+                        {% endif %}
                         
                         <div class="col details">
                            ${{mainjob.pay_range}}
@@ -254,31 +273,18 @@
                     </div>
                     
                 </div>
-                <div class="job_requirements">
-                    <hr>
-                    <h4> Job Requirements </h4>
-                    <hr>
-                    <div class="requirements">
-                       
-                    Now Hiring Immediately!
-
-                    What We Can Offer You:
-   
-                        <br>
-                        
-                    </div>
-                    
-                </div>
+ 
             </div>
             
-           
         </div>
         
     </div>
-    
-    
-        
-       
+
+    <script>
+
+    </script>
+
+         
     {% endblock %}
     
 
