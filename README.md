@@ -1,5 +1,5 @@
 # Blue-Collar
-A web Application for Blue Collar Jobs.
+A easy-to-use web application to find or create blue-collar jobs in a few steps.
 
 Create a project dir and cd into the dir
 
