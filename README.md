@@ -13,4 +13,4 @@ cd into the project file
 
 Run command: pip3 install -r requirements.txt
 
-Run command: python manage.py shell
+Run command: python manage.py runserver
