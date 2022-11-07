@@ -1,16 +1,25 @@
 # Blue-Collar
-A web Application for Blue Collar Jobs.
+  A easy-to-use web application to find or create blue-collar jobs in a few steps.
 
-Create a project dir and cd into the dir
 
-(Optional) create a virtual environment: python3 -m venv "virtual environment name"
+## To run locally
 
-if virtual environment created, activate the virtual environment with this command: source "virtual environment name"/bin/activate
+  Create a project dir and cd into the dir
+##
+### ( Optional)
 
-Clone the file within the directory
+  create a virtual environment: python3 -m venv "virtual environment name"
+  
+  if virtual environment created, activate the virtual environment with this command: source "virtual environment   name"/bin/activate
+##
 
-cd into the project file
+ Clone the file within the directory
 
-Run command: pip3 install -r requirements.txt
+ cd into the project file
 
-Run command: python manage.py shell
+### Run command:
+  pip3 install -r requirements.txt
+  
+  python manage.py runserver
+
+##
