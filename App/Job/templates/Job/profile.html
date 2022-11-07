@@ -1,5 +1,7 @@
 {% extends 'Job/base.html' %}{% load static %}
 
+{% block searchbar %}{% endblock %}
+
 {% block content %}
 
 <style>
@@ -12,6 +14,7 @@
         width: 60vw;
         margin-left: 20vw;
         margin-right: 20vw;
+        min-height: 82vh;
     }
     
     .first{
@@ -38,54 +41,16 @@
     }
 
     .namesec{
-        font-size: 4vh;
+        font-size: 3vh;
         padding-top: 4vh;
     }
     
-    .contactsec{
-        height: 20vh;
-        padding-top: 4vh;
-        padding-left: 1vw;
-        border-radius: 1vh;
-        background-color: rgb(224, 224, 224);
-        color: white;
-        margin-top: 2vh;
-        font-size: 3vh;
-    }
-
-    .expsec{
-        height: 30vh;
-        padding-top: 2vh;
-        padding-left: 3vw;
-        border-radius: 1vh;
-        background-color: #f3f3f3;
-        margin-bottom: 3vh;
-        font-size: 4vh;
-        margin-top: 4vh;
-        text-align: center;
-    }
-
     .emailsec{
         text-align: right;
         height: 5vh;
         margin-bottom: 2vh;
     }
-    .phoneSec{
-        height: 5vh;
-    }
-    .expedit{
-        padding-left: 35vw;
-        margin-left: 10vw;
-    }
-    .licedit{
-        
-        width: 10vw;
-        border-style: dashed;
-        
-    }
-    .expheader{
-        height: 8vh;
-    }
+   
     .profileImage{
         width: 13vh;
         height: 13vh;
@@ -93,87 +58,132 @@
         margin-left: 2vw;
         margin-top: 2vh;
     }
-    
-    
+
+    .experience_container{
+        background-color: #f3f3f3;
+        min-height: 20vh;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+
+    .experience_header{
+        height: 5vh;
+    }
+
+    .experience_content{
+        min-height: 15vh;
+        padding: 2vh;
+        
+    }
+
+    .editexp{
+        font-size: large;
+        padding-top: 2vh;
+        color: rgb(4, 91, 98);
+    }
+
+    .each_experience{
+        min-height: 20vh;
+        background-color: #ffffff00;
+        padding-left: 2vw;
+
+    }
+
+    .job_title{
+        font-size: 2.5vh;
+        
+    }
+
+    .employer{
+        font-size: 2vh;
+    }
+
+    .work_date{
+        padding-left: 35vw;
+              
+    }
+
+    .experience_description{
+        min-height: 10vh;
+        padding-top: 1vh;
+        font-size: 2vh;
+        text-align: justify;
+        padding-right: 2vw;
+    }
+
+
 </style>
 
 
 <div class="container">
     <div class="row first">
         <div class="col-2 ">
-            
             <img src="{% static 'images/Job/pic.jpg'%}" alt="pic" class="profileImage">
-                
-            
-            
         </div>
+
         <div class="col-4 namesec">
-           
             {{profile.user.email}}
-            <a href="{% url 'updateprofile' profile.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-              
+            <h3><a href="{% url 'updateprofile' profile.id %}"><span class="glyphicon glyphicon-pencil"></span></a></h3>   
         </div>
     </div>
-    
-    
-    
-    <div class="row expsec">
-        <div class="row">
-            <div class="col-7">
-                Education
-            </div>
-            <div class="col-5">
-                <a href="#"><span>+</span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-                
-            </div>
-        </div>
-        <div class="row">
+    <div class="row experience_container">
+        <div class="col">
+            <div class="row experience_header">
+                <div class="col-2">
+                    <h3> Experience</h3>
+                </div>
 
-        </div>  
+                <div class="col-8 editexp">
+                    <span class="glyphicon glyphicon-pencil"> </span> <span class="glyphicon glyphicon-plus"></span>   
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row experience_content">
+                <div class="row each_experience">
+                    
+                        <div class="row job_title"> Shift Manager </div>
+
+                        <div class="row employer"> 
+                            <div class="employer_name"> Mitho Bhojanalaya    </div>
+                            <div class="work_date">  (Part-time)  Aug 2022 - present </div>
+                        </div>
+
+                        <div class="row experience_description">
+                            <ul>
+                                <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
+                                <li> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique dolor, praesentium est repellat facilis officiis deleniti, natus doloremque fugit asperiores earum odio, porro adipisci voluptatum facere. Voluptatibus tempora doloribus iusto.</li>
+                                <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
+                            </ul>
+                        </div>
+                </div>
+                <hr>
+                <div class="row each_experience">
+                    
+                    <div class="row job_title"> Shift Manager </div>
+                    <div class="row employer"> 
+                        <div class="employer_name"> Mitho Bhojanalaya    </div>
+                        <div class="work_date">  (Part-time)  Aug 2022 - present </div>
+                    </div>
+                    <div class="row experience_description">
+                        <ul>
+                            <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
+                            <li> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique dolor, praesentium est repellat facilis officiis deleniti, natus doloremque fugit asperiores earum odio, porro adipisci voluptatum facere. Voluptatibus tempora doloribus iusto.</li>
+                            <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <hr>
+            </div>
+
+        </div>
     </div>
 
-    <div class="row expsec">
-        <div class="row">
-            <div class="col-8">
-                Experience
-            </div>
-            <div class="col-4">
-                <a href="#"><span>+</span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-                
-            </div>
-        </div>
-        <div class="row">
+    <div>
 
-        </div>  
-    </div>
-
-    <div class="row expsec">
-        <div class="row">
-            <div class="col-8">
-                Certifications
-            </div>
-            <div class="col-4">
-                <a href="#"><span>+</span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-
-        </div>
-
-        
     </div>
     
-</div>
+  
 {% endblock %}

@@ -1,0 +1,232 @@
+
+{% extends 'Job/base.html' %}{% load static %}
+
+{% block userMode %}
+        
+{% endblock %}
+
+{% block content %}
+<style>
+
+    body{
+        color:rgb(4, 91, 98);
+    }
+
+    .main_container{
+        margin-top: 2vh;
+        width: 61vw;
+        margin-left: 18vw;
+        min-height: 82vh;;
+            
+    }
+
+    .choose{
+        width: 10vw;
+    }
+
+    .location,.keyword{
+        text-align: center;
+    }
+
+    .job{
+        background-color: #f3f3f3;
+        height: 70vh;
+        border-radius: 2vh;
+        padding: 1vw;
+        margin-left: -3vw;
+        margin-right: -3vw;
+        padding-left: 0vw;
+        padding-right: 0vw;
+       
+    }
+
+    .job_list{
+        margin-right: 2vw;
+        margin-left: 2vw; 
+    }
+
+    .job_list,.job_info{
+        
+        background-color: white;
+        height: 66vh;
+        overflow-y: scroll;
+        scroll-behavior: smooth; 
+    }
+
+    .job_info{
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+
+    .job_title,.title{
+        margin-top: 2vh;
+    }
+
+    .job_tile{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        min-height: 5vh;
+    }
+
+    .details{
+        background-color: #f3f3f3;
+        height: 4vh;
+        padding-top: 1vh;
+        margin-left: 1vh;
+        margin-right: 1vh;
+        text-align: center;
+    }
+
+    .job_details{
+        text-align: center;
+        color:rgb(4, 91, 98);
+    }
+
+    .job_description,.job_requirements{
+        text-align: center;
+        padding-left: -5vw;
+        
+        
+    }
+
+    .description,.requirements{
+        text-align: justify;
+        
+        
+    }
+
+    .title{
+        background-color: white;
+        border-style: none;
+        border-color: rgb(4, 91, 98);
+        text-align: justify;
+        margin-top: -2vh;
+        width: 14vw;
+    }
+
+    .addJobButton{
+
+        margin-top: 2vh;
+        margin-left: 4vw;
+        margin-right: 2vw;
+    }
+    .numjobs{
+        text-align: center;
+    }
+
+</style>
+
+<div class="main_container">
+    
+    <div class="row job">
+        
+        <div class="col-3 job_list">
+            <hr>
+                
+            {% block employerJobs %}
+            
+            {% endblock %}
+            
+                <button class="title" name="change">
+                    <h4>{{mainjob.title}}</h4>
+                    <h5>{{mainjob.business_name}}</h5>
+                    <h5>{{mainjob.city}}, {{mainjob.state}}, USA</h5>
+                </button>
+            
+            
+            <hr>
+            {% if jobs is not none %}
+            {% for job in jobs %}
+            {% if job is not mainjob %}
+
+            {% block mainJob %}
+            
+            {% endblock %}
+            <form method="POST" name="change_main_job">
+                {% csrf_token %}
+            <input type="text" name="mainjob" value="{{job.id}}" hidden/>
+            <button class="title" name="change_main_job">
+                <h4>{{job.title}}</h4>
+                <h5>{{job.business_name}}</h5>
+                <h5>{{job.city}}, {{job.state}}, USA</h5>
+            </button>
+            </form>
+            {% endif %}
+            <hr>
+            
+            {% endfor %}
+            {% endif %}
+
+            {% if not jobs is not none %}
+                <h4>Sorry! 0 jobs available.</h4>
+                <hr>
+            {% endif %}   
+            
+        </div>
+        
+        <div class="col-8 job_info">
+            
+            <div class="job_title">
+                <hr>
+                <div class="row">
+                    <div class="col-9">
+                        <h4> {{mainjob.title}} </h4>
+                        <h5>{{mainjob.business_name}}</h5>
+                        <h5>{{mainjob.street_address}}, {{mainjob.city}}, {{mainjob.state}}, {{mainjob.zip_code}}.</h5>
+                    </div>
+
+                    
+                    <div class="col-3" style="text-align:right;">
+                        {% block userfunctions %}
+                        
+                        {% endblock %}   
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+            <div class="job_details">
+                <hr>
+                
+                <div class="row job_section">
+                    <div class="col details">
+                        {{mainjob.type}}
+                    </div>
+                    {% if mainjob.schedulable %}
+                    <div class="col details">
+                        schedulable
+                    </div>
+                    {% endif %}
+                    
+                    <div class="col details">
+                        ${{mainjob.pay_range}}
+                    </div>
+                    <div class="col details">
+                        Free Food
+                    </div>
+                </div>
+            </div>
+            <div class="job_description">
+                <hr>
+                <h4> Job Description </h4>
+                <hr>
+                <div class="description">
+                {{mainjob.job_description|safe}}
+                <br>  
+                </div>
+                
+            </div>
+
+        </div>
+        
+    </div>
+      
+</div>
+{% endblock %}
+        
+    
+    
+    
+    

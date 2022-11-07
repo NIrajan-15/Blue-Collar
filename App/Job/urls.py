@@ -13,5 +13,6 @@ urlpatterns = [
     path('updateprofile/<str:pid>/', views.update_profile, name='updateprofile'),
     path('employer/<str:pid>/',views.employer_mode, name='employer'),
     path('add_job/',views.add_job, name="addJob"),
+    
      
 ]

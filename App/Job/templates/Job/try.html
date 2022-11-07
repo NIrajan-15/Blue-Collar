@@ -1,0 +1,49 @@
+{% extends 'Job/base.html' %}
+
+{% block content %}
+
+    <head>
+        <title>try</title>
+        <script type="text/javascript">
+            
+            
+              
+            var data = JSON.parse(JSON.stringify('{{jobs_json|escapejs}}'));
+            console.log((data));
+
+            for(a of data)
+            {
+                document.getElementById("jobs").innerHTML=a.pk;
+            }
+
+            
+            
+            
+              
+            
+            
+        </script>
+    </head>
+    <body>
+
+    
+    <div class="row container">
+
+        <div id="jobs" style="width:1vw;"> {% autoescape on %}
+            {{ jobs_json|safe }}
+        {% endautoescape %} </div>
+
+        <div class="col-2 listing" id="listjobs">
+            
+        </div>
+        <div class="col-8">
+
+        </div>
+
+    </div>
+    
+
+</body>
+
+
+{% endblock %}
