@@ -13,6 +13,8 @@ urlpatterns = [
     path('updateprofile/<str:pid>/', views.update_profile, name='updateprofile'),
     path('employer/<str:pid>/',views.employer_mode, name='employer'),
     path('add_job/',views.add_job, name="addJob"),
+    path('add_experience',views.add_experience, name="addExp"),
+    path('add_certification',views.add_certification,name="addCertification"),
     
      
 ]

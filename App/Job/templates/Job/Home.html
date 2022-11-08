@@ -47,7 +47,7 @@
 
         .post_top{
             width: 30vw;
-            margin-left: 0vw;
+            margin-left: -3vw;
         }
 
         .post_pic{
@@ -73,9 +73,9 @@
 
         .mainSub{
             text-align: justify;
-            margin-left: 11vw;
+            margin-left: 0vw;
             margin-right: 2vw;
-            margin-top: -2vh;
+            margin-top: 1vh;
             border-radius: 1vh;
             margin-bottom: 2vh;
             font-size: larger;
@@ -118,6 +118,9 @@
             text-align: center;
             padding-top: 20vh;
             min-height: 48vh;
+            margin-bottom: 2vh;
+            background-color: #f3f3f3;
+            border-radius: 3vh;
         }
 
         .profile_pic{
@@ -149,6 +152,7 @@
                             <div class="col-6 post_name">
                                 <h4> {{post.user_profile.first_name}} {{post.user_profile.last_name}}</h4> 
                                 <h5>{{post.created_at}}</h5>
+                                <h4><span class="glyphicon glyphicon-pencil"></span></h4>
                             </div>
                             
                         </div>
@@ -165,7 +169,10 @@
             {% endfor %}
             {% endif %}
             {% if not posts %}
-                <h3>Sorry! No Posts Available at the moment.</h3>  
+            <div class="no_post">
+                <h3>Sorry! No Posts Available at the moment.</h3> 
+            </div>
+                 
             {% endif %}     
         </div>    
     </div>

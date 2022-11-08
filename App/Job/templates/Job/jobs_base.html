@@ -16,7 +16,7 @@
         margin-top: 2vh;
         width: 61vw;
         margin-left: 18vw;
-        min-height: 82vh;;
+        min-height: 78vh;
             
     }
 
@@ -115,6 +115,23 @@
         text-align: center;
     }
 
+    .nojobs{
+        font-size: 3vh;
+        padding-left: 18vw;
+        padding-top: 30vh;    
+    }
+
+    @media screen and (max-width: 420px)
+    {
+        .job{
+            margin-left: -20vw;
+            width: 100vw;
+            font-size: 2vw;
+        }  
+    }
+
+    
+
 </style>
 
 <div class="main_container">
@@ -127,15 +144,16 @@
             {% block employerJobs %}
             
             {% endblock %}
-            
+
+            {% if mainjob.id is not none %}
                 <button class="title" name="change">
                     <h4>{{mainjob.title}}</h4>
                     <h5>{{mainjob.business_name}}</h5>
                     <h5>{{mainjob.city}}, {{mainjob.state}}, USA</h5>
                 </button>
+                <hr>
+            {% endif %}
             
-            
-            <hr>
             {% if jobs is not none %}
             {% for job in jobs %}
             {% if job is not mainjob %}
@@ -165,6 +183,7 @@
             
         </div>
         
+        {% if mainjob.id is not none %}
         <div class="col-8 job_info">
             
             <div class="job_title">
@@ -204,7 +223,7 @@
                         ${{mainjob.pay_range}}
                     </div>
                     <div class="col details">
-                        Free Food
+                        {{mainjob.time}}
                     </div>
                 </div>
             </div>
@@ -220,6 +239,14 @@
             </div>
 
         </div>
+        {% endif %}
+
+        {% if not mainjob.id is not none %}
+        <div class="row nojobs">
+             No Jobs Found! 
+        </div>
+        {% endif %}
+
         
     </div>
       

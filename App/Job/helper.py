@@ -25,7 +25,7 @@ def search_jobs(request):
     jobfilter.city = request.POST.get('city')
     jobfilter.type = request.POST.get('type')
     jobs = jobfilter.qs
-    mainjob = jobs[0]
+    mainjob = jobs[:1]
     context={
     
     'jobs':jobs,
@@ -43,3 +43,7 @@ def search_jobs(request):
 def change_main_job(request):
     return request.POST.get("mainjob")
 
+
+
+        
+    

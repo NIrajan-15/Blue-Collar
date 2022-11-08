@@ -1,0 +1,20 @@
+{% extends 'Job/base.html' %}{% load static %} {% load crispy_forms_tags %}
+{% block searchbar %}{% endblock %}
+{% block content%}
+
+<style> 
+    .container{
+        min-height: 82vh;
+    }
+</style>
+
+<div class="main_container">
+    <form method="POST">
+        {% csrf_token %}
+    {{form|crispy}}
+    {{form.media}}
+    <button class="btn btn-dark " style="margin-left:30vw;margin-bottom:2vh;">Add Experience</button>
+    </form>
+  
+</div>
+{% endblock %}

@@ -59,20 +59,23 @@
         margin-top: 2vh;
     }
 
-    .experience_container{
+    .experience_container,.certification_container{
         background-color: #f3f3f3;
-        min-height: 20vh;
-        margin-top: 2vh;
+        min-height: 15vh;
+        margin-top: 2vh;  
         margin-bottom: 2vh;
+        border-radius: 1vh;
     }
+
 
     .experience_header{
         height: 5vh;
+        
     }
 
     .experience_content{
-        min-height: 15vh;
-        padding: 2vh;
+        min-height: 10vh;
+        padding-left: 1vh;
         
     }
 
@@ -83,10 +86,9 @@
     }
 
     .each_experience{
-        min-height: 20vh;
+        min-height: 10vh;
         background-color: #ffffff00;
         padding-left: 2vw;
-
     }
 
     .job_title{
@@ -109,8 +111,20 @@
         font-size: 2vh;
         text-align: justify;
         padding-right: 2vw;
+
     }
 
+    .each_certification{
+        min-height: 5vh;
+        padding-left: 1vw;
+        margin-bottom: 1vh;
+        padding-left: 5vw;
+    }
+
+    .certification_link{
+        width: 50vw;
+        
+    }
 
 </style>
 
@@ -126,6 +140,7 @@
             <h3><a href="{% url 'updateprofile' profile.id %}"><span class="glyphicon glyphicon-pencil"></span></a></h3>   
         </div>
     </div>
+
     <div class="row experience_container">
         <div class="col">
             <div class="row experience_header">
@@ -134,54 +149,70 @@
                 </div>
 
                 <div class="col-8 editexp">
-                    <span class="glyphicon glyphicon-pencil"> </span> <span class="glyphicon glyphicon-plus"></span>   
+                    <span class="glyphicon glyphicon-pencil"> </span> <a href="{% url 'addExp' %}"><span class="glyphicon glyphicon-plus"></span></a>  
                 </div>
             </div>
 
             <hr>
-
+            
             <div class="row experience_content">
+                {% for experience in experiences %}
                 <div class="row each_experience">
                     
-                        <div class="row job_title"> Shift Manager </div>
+                        <div class="row job_title"> {{experience.job_title}} </div>
 
                         <div class="row employer"> 
-                            <div class="employer_name"> Mitho Bhojanalaya    </div>
-                            <div class="work_date">  (Part-time)  Aug 2022 - present </div>
+                            <div class="employer_name"> {{experience.employer}}   </div>
+                            <div class="work_date">  {{experience.type}}  {{experience.start_date}} - {{experience.end_date}} </div>
                         </div>
 
                         <div class="row experience_description">
-                            <ul>
-                                <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
-                                <li> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique dolor, praesentium est repellat facilis officiis deleniti, natus doloremque fugit asperiores earum odio, porro adipisci voluptatum facere. Voluptatibus tempora doloribus iusto.</li>
-                                <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
-                            </ul>
+                          {{experience.job_description|safe}}
                         </div>
+                
                 </div>
-                <hr>
-                <div class="row each_experience">
+            <hr>
+            {% endfor %} 
+            </div>
+        </div>
+        </div>
+    
+            <div class="row certification_container">
+                <div class="col">
+                    <div class="row experience_header">
+                        <div class="col-2">
+                            <h3> Certifications</h3>
+                        </div>
+                        
+                        <div class="col-8 editexp">
+                            <span class="glyphicon glyphicon-pencil"> </span> <a href="{% url 'addCertification' %}"><span class="glyphicon glyphicon-plus"></span></a> 
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    {% for certificate in certificates %}
+                    <div class="row each_certification">
+                    <div class="col">
+                        <div class="row">
+                            <a><button class="btn btn-primary certification_link"> {{certificate.certification_name}}  </button></a>
+                        </div>
+                        <div class="row">
+                            <span>Issued by: {{certificate.issued_by}}</span>
+                        </div>
+                    </div>
+                        
+                    </div>
+                    <hr>
+                    {% endfor %}
                     
-                    <div class="row job_title"> Shift Manager </div>
-                    <div class="row employer"> 
-                        <div class="employer_name"> Mitho Bhojanalaya    </div>
-                        <div class="work_date">  (Part-time)  Aug 2022 - present </div>
-                    </div>
-                    <div class="row experience_description">
-                        <ul>
-                            <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
-                            <li> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique dolor, praesentium est repellat facilis officiis deleniti, natus doloremque fugit asperiores earum odio, porro adipisci voluptatum facere. Voluptatibus tempora doloribus iusto.</li>
-                            <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum nemo et odio perferendis neque? Omnis praesentium corrupti similique dolorum qui mollitia officia hic nisi pariatur, magnam alias commodi numquam! </li>
-                        </ul>
-                    </div>
-
+                    
                 </div>
-                <hr>
+
             </div>
 
-        </div>
     </div>
 
-    <div>
+    
 
     </div>
     

@@ -1,5 +1,3 @@
-from cProfile import Profile
-from pickle import FALSE
 from .forms import *
 from django.shortcuts import render, redirect
 from .models import *
@@ -66,7 +64,6 @@ def home(request):
     context = {
         'posts' : posts,
     }
-
     return render(request, 'Job/Home.html', context)
 
 
@@ -105,12 +102,14 @@ def employer_mode(request,pid):
             context = helper.search_jobs(request)
             return render(request,'Job/employer.html', context)
         
-    
     profile = UserProfile.objects.get(user=request.user)
     jobs = Job.objects.filter(employer=profile)
-    mainjob = Job.objects.get(id=pid)
+    numjob = jobs.count()
+
+    mainjob = jobs[:1]
+
     context={
-        
+        'numJob':numjob,
         'jobs':jobs,
         'mainjob':mainjob
     }
@@ -144,10 +143,17 @@ def profile(request):
     
     if (UserProfile.objects.get(user=request.user) is not None):
         profile = UserProfile.objects.get(user=request.user)
+        experiences = Experience.objects.filter(user_profile=profile)
+        certificates = Certifications.objects.filter(user_profile=profile)
+    
     else:
         profile = None
+        experiences = None
+    
     context = {
-        'profile' : profile
+        'certificates':certificates,
+        'profile' : profile,
+        'experiences': experiences,
     }
 
     return render(request, 'Job/profile.html', context)
@@ -171,3 +177,43 @@ def update_profile(request, pid):
     }
 
     return render(request, 'Job/update_profile.html', context)
+
+@login_required(login_url='login')
+def add_experience(request):
+
+    if request.method=="POST":
+        form = ExperienceForm(request.POST)
+        profile = UserProfile.objects.get(user=request.user)
+
+        if form.is_valid():
+            experience = form.save(commit=False)
+            experience.user_profile = profile
+            experience.save()
+        return redirect('profile/')
+        
+    form = ExperienceForm()
+    context = {
+        'form':form,
+
+    }
+    return render(request,'Job/add_experience.html', context)
+
+@login_required(login_url='login')
+def add_certification(request):
+
+    if request.method=="POST":
+        form = CertificationForm(request.POST,request.FILES)
+        profile = UserProfile.objects.get(user=request.user)
+
+        if form.is_valid():
+            certification = form.save(commit=False)
+            certification.user_profile = profile
+            certification.save()
+        return redirect('profile/')
+        
+    form = CertificationForm()
+    context = {
+        'form':form,
+
+    }
+    return render(request,'Job/add_certification.html', context)

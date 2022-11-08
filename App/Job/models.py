@@ -24,15 +24,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.first_name
 
-class Experience(models.Model):
-    job_title = models.CharField(max_length=20)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    description = models.CharField(max_length =100)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.job_title
-
 class Post(models.Model):
     description = models.CharField(max_length=500)
     created_at = models.DateField()
@@ -42,18 +33,18 @@ class Post(models.Model):
     def __str__(self):
         return self.description
 
+time = [('Part-time','Part-time'),('Full-time','Full-time'),('Contract','Contract')]
 
 class Job(models.Model):
-
-    time = [('Part-time','Part-time'),('Full-time','Full-time'),('Contract','Contract'),('Scheduleable','Scheduleable')]
 
     title = models.CharField(max_length=20)
     type = models.CharField(max_length=15, choices= time)
     street_address = models.CharField(max_length=30)
+    time = models.CharField(max_length=30)
     pay_range = models.CharField(max_length=20,null=True)
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=30)
-    business_name = models.CharField(max_length=30,null=True)
+    employer_name = models.CharField(max_length=30,null=True)
     zip_code = models.IntegerField()
     job_description = RichTextField(blank=True, null=True)
     employer = models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=True)
@@ -61,6 +52,30 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+class Experience(models.Model):
+
+    job_title = models.CharField(max_length=20)
+    employer = models.CharField(max_length=100)
+    start_date = models.CharField(max_length=20)
+    end_date = models.CharField(max_length=20)
+    type = models.CharField(max_length=20, choices=time)
+    job_description = RichTextField(blank=True, null=True)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.job_title
+
+class Certifications(models.Model):
+
+    certification_name = models.CharField(max_length=100)
+    pdf = models.FileField(upload_to='Job/')
+    issued_by = models.CharField(max_length=100)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.certification_name
+
 
 @receiver(post_save, sender=User)
 def create_userprofile(sender, instance, created, **kwargs):

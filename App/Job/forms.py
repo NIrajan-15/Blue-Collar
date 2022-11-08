@@ -30,12 +30,6 @@ class UserProfileForm(ModelForm):
         fields = '__all__'
         exclude = ['user']
 
-class ExperienceForm(ModelForm):
-    class Meta:
-        model = Experience
-        fields = '__all__'
-        exclude = ['user_profile']
-
 class PostForm(ModelForm):
     class Meta:
         model = Post
@@ -53,4 +47,17 @@ class NewJobForm(ModelForm):
         model = Job
         fields = '__all__'
         exclude = ['employer']
+
+class ExperienceForm(ModelForm):
+    class Meta:
+        model = Experience
+        fields = '__all__'
+        exclude = ['user_profile']
+
+class CertificationForm(ModelForm):
+    class Meta:
+        model = Certifications
+        fields = '__all__'
+        exclude = ['user_profile']
+
         
