@@ -1,0 +1,15 @@
+{% extends 'Job/base.html' %}{% load static %}{% load crispy_forms_tags %}
+
+{% block searchbar %}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{Application_form|crispy}}
+            <button class="btn btn-primary"> Apply </button>
+        </form>
+    </div>
+
+{% endblock %}

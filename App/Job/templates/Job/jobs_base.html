@@ -165,9 +165,11 @@
                 {% csrf_token %}
             <input type="text" name="mainjob" value="{{job.id}}" hidden/>
             <button class="title" name="change_main_job">
+                <a href="">
                 <h4>{{job.title}}</h4>
                 <h5>{{job.business_name}}</h5>
                 <h5>{{job.city}}, {{job.state}}, USA</h5>
+                </a>
             </button>
             </form>
             {% endif %}
@@ -197,7 +199,7 @@
 
                     
                     <div class="col-3" style="text-align:right;">
-                        {% block userfunctions %}
+                        {% block userFunctions %}
                         
                         {% endblock %}   
                     </div>

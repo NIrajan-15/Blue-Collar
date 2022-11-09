@@ -3,7 +3,7 @@ from pickle import FALSE
 import re
 from xml.etree.ElementTree import Comment
 from .forms import *
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect,HttpResponseRedirect
 from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
@@ -45,5 +45,5 @@ def change_main_job(request):
 
 
 
-        
+            
     

@@ -158,7 +158,8 @@
             <div class="row experience_content">
                 {% for experience in experiences %}
                 <div class="row each_experience">
-                    
+                        <div class="col">
+
                         <div class="row job_title"> {{experience.job_title}} </div>
 
                         <div class="row employer"> 
@@ -168,6 +169,7 @@
 
                         <div class="row experience_description">
                           {{experience.job_description|safe}}
+                        </div>
                         </div>
                 
                 </div>
@@ -194,7 +196,7 @@
                     <div class="row each_certification">
                     <div class="col">
                         <div class="row">
-                            <a><button class="btn btn-primary certification_link"> {{certificate.certification_name}}  </button></a>
+                            <a target="_blank"><button class="btn btn-primary certification_link"> {{certificate.certification_name}}  </button></a>
                         </div>
                         <div class="row">
                             <span>Issued by: {{certificate.issued_by}}</span>

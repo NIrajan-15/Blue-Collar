@@ -60,4 +60,8 @@ class CertificationForm(ModelForm):
         fields = '__all__'
         exclude = ['user_profile']
 
-        
+class ApplicationForm(ModelForm):
+    class Meta:
+        model = Applications
+        fields = '__all__'
+        exclude = ['application_job','applicant_profile','applied_on']    

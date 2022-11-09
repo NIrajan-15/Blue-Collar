@@ -1,5 +1,5 @@
 from .forms import *
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
 from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .filters import *
 from . import helper
+import datetime
+from django.http import HttpResponseRedirect
 
 
 
@@ -106,8 +108,8 @@ def employer_mode(request,pid):
     jobs = Job.objects.filter(employer=profile)
     numjob = jobs.count()
 
-    mainjob = jobs[:1]
-
+    mainjob = jobs[0]
+    print(mainjob)
     context={
         'numJob':numjob,
         'jobs':jobs,
@@ -217,3 +219,27 @@ def add_certification(request):
 
     }
     return render(request,'Job/add_certification.html', context)
+
+@login_required(login_url='login')
+def apply_job(request, pid):
+
+    if request.method == "POST":
+        form = ApplicationForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.applicant_profile = UserProfile.objects.get(user=request.user)
+            application.application_job = Job.objects.get(id=pid)
+            application.applied_on = datetime.now()
+            application.save()
+            print("working")
+        return redirect('/')
+        
+    form = ApplicationForm()      
+    context = {
+        'Application_form':form
+    }
+    return render(request,'Job/apply_job.html', context)
+
+
+

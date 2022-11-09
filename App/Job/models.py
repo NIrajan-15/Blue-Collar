@@ -13,6 +13,7 @@ from pymysql import NULL
 from requests import request
 from ckeditor.fields import RichTextField
 
+
 class UserProfile(models.Model):
     first_name = models.CharField(max_length=20)
     middle_name = models.CharField(max_length=20,null=True,default=None)
@@ -77,8 +78,28 @@ class Certifications(models.Model):
         return self.certification_name
 
 
+class Applications(models.Model):
+
+    applicant_first_name = models.CharField(max_length=20)
+    applicant_middle_name = models.CharField(max_length=20,null=True)
+    applicant_last_name = models.CharField(max_length=20)
+    applicant_email = models.EmailField(max_length=50)
+    application_job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    applicant_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    applicant_resume = models.FileField(upload_to='images/Job/')
+    applied_on = models.DateField()
+    additional_contact = models.CharField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.pk
+    
+
+
 @receiver(post_save, sender=User)
 def create_userprofile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+
+
+
 
